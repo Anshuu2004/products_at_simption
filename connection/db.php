@@ -1,9 +1,9 @@
 <?php
 // connection/db.php
 $host = '127.0.0.1';
-$db   = 'simption';
-$user = 'dbuser';
-$pass = 'dbpass';
+$db   = 'products_at_simption';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
