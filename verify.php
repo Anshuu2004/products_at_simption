@@ -1,28 +1,27 @@
 <?php 
 require 'connection/db.php';
+session_start();
 
-if (!empty($_GET['code']) && !empty($_GET['email'])) {
-    $code  = $_GET['code'];
-    $email = $_GET['email'];
+$code = $_GET['code'] ?? '';
 
-    // Check if user exists with this email + code and not yet verified
-    $stmt = $pdo->prepare(
-        "SELECT id FROM users WHERE email = ? AND verify_code = ? AND is_verified = 0"
-    );
-    $stmt->execute([$email, $code]);
+if (!$code) {
+    $message = "Missing or invalid verification code.";
+} else {
+    // Check if user exists with this code and is not yet verified
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE verify_code = ? AND is_verified = 0");
+    $stmt->execute([$code]);
 
     if ($user = $stmt->fetch()) {
         // Mark user as verified
-        $pdo->prepare(
-            "UPDATE users SET is_verified = 1, verify_code = NULL WHERE id = ?"
-        )->execute([$user['id']]);
+        $update = $pdo->prepare("UPDATE users SET is_verified = 1, verify_code = NULL WHERE id = ?");
+        $update->execute([$user['id']]);
 
-        $message = "Email verified! You may now login.";
+        $message = "✅ Email verified successfully! You may now log in.";
+        // Optional: redirect after 5 seconds
+        header("Refresh: 5; URL=login.php");
     } else {
-        $message = "Invalid or already used verification link.";
+        $message = "⚠️ Verification failed. Link may be invalid or already used.";
     }
-} else {
-    $message = "Missing parameters.";
 }
 
 include 'includes/header.php'; 

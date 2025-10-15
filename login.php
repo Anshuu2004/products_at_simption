@@ -3,27 +3,32 @@ require 'connection/db.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
+    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
     $pass  = $_POST['password'] ?? '';
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? LIMIT 1");
-    $stmt->execute([$email]);
-
-    if ($u = $stmt->fetch()) {
-        if (!password_verify($pass, $u['password'])) {
-            $error = "Invalid credentials.";
-        } elseif (!$u['is_verified']) {
-            $error = "Please verify your email before logging in.";
-        } else {
-            // Remove sensitive fields before storing in session
-            unset($u['password'], $u['verify_code']);
-            $_SESSION['user'] = $u;
-
-            header("Location: index.php");
-            exit;
-        }
+    if (!$email || !$pass) {
+        $error = "Please enter both email and password.";
     } else {
-        $error = "Invalid credentials.";
+        $stmt = $pdo->prepare("SELECT id, name, email, password, is_verified FROM users WHERE email = ? LIMIT 1");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($pass, $user['password'])) {
+            if ($user['is_verified']) {
+                // Store only safe user data in session
+                $_SESSION['user'] = [
+                    'id'    => $user['id'],
+                    'name'  => $user['name'],
+                    'email' => $user['email']
+                ];
+                header("Location: index.php");
+                exit;
+            } else {
+                $error = "Please verify your email before logging in.";
+            }
+        } else {
+            $error = "Invalid email or password.";
+        }
     }
 }
 
