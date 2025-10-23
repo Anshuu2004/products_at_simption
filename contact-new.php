@@ -111,7 +111,7 @@ include 'includes/header.php';
                             </div>
                             
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-accent btn-lg">Send Message</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
                             </div>
                         </form>
                     </div>

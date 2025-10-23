@@ -74,7 +74,7 @@ include 'includes/header.php';
                                 </div>
                                 
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-accent btn-lg">Submit Request</button>
+                                    <button type="submit" class="btn btn-primary btn-lg">Submit Request</button>
                                 </div>
                             </form>
                         </div>

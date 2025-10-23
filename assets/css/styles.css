@@ -2,24 +2,35 @@
    1. Brand Colors & Fonts
 ====================================== */
 :root {
-    --primary-color: #e63946;    /* Red color as requested */
-    --secondary-color: #333333;  /* Dark grey for text */
-    --accent-color: #f6d743;     /* Yellow accent color */
-    --light-gray: #f8f9fa;
-    --dark-color: #222222;
-    
-    --font-heading: 'Poppins', 'Inter', 'Roboto', sans-serif;
-    --font-body: 'Poppins', 'Inter', 'Roboto', sans-serif;
+    /* Brand Palette */
+    --primary-color: #00b8b9; /* Logo Teal */
+    --secondary-color: #343a40; /* Logo Charcoal */
+    --text-color: #212529; /* Near black */
+    --background-color: #ffffff; /* Clean white */
+    --subtle-bg: #f8f9fa; /* Very light gray */
+    --border-color: #dee2e6;
+
+    /* Font System - system stack */
+    --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* ===================================
    2. Global Styles
 ====================================== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-body);
-    color: var(--secondary-color);
-    background-color: #fff; /* Default to a clean white background */
-    overflow-x: hidden;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    /* Removed overflow-x: hidden which interferes with sticky positioning */
+}
+
+html {
+    /* Removed overflow-x: hidden which interferes with sticky positioning */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -66,66 +77,146 @@ h3 {
    3. Custom Button Styles
 ====================================== */
 .btn {
-    border-radius: 50px; /* Rounded pill shape for a modern feel */
-    padding: 12px 30px;
-    font-weight: bold;
-    transition: all 0.3s ease;
+    border-radius: 10px;
+    padding: 10px 22px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.btn-accent {
+.btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: #fff;
 }
-.btn-accent:hover {
-    background-color: #c1121f; /* A slightly darker red */
-    border-color: #c1121f;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-.btn-outline-primary:hover {
-    background-color: var(--primary-color);
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #00a0a1;
+    border-color: #00a0a1;
     color: #fff;
-}
-
-.btn-bulk-order {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: #fff;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
-}
-.btn-bulk-order:hover {
-    background-color: #c1121f;
-    border-color: #c1121f;
-    box-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
     transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 184, 185, 0.25);
 }
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 184, 185, 0.25);
+}
+
+.btn-accent { background-color: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+.btn-accent:hover { background-color: #00a0a1; border-color: #00a0a1; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 184, 185, 0.25); }
+
+.btn-outline-primary { color: var(--primary-color); border-color: var(--primary-color); }
+.btn-outline-primary:hover { background-color: var(--primary-color); color: #fff; }
+
+.btn-bulk-order { background-color: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+.btn-bulk-order:hover { background-color: #00a0a1; border-color: #00a0a1; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 184, 185, 0.25); }
 
 /* ===================================
    4. Hero Section Styles
 ====================================== */
 .hero-section {
-    padding: 100px 0;
-    background-color: var(--light-gray);
+    padding: 0;
+    background-color: var(--subtle-bg);
     overflow: hidden; /* Prevents horizontal scroll on animations */
     position: relative;
 }
 
+/* Hero Carousel */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: clamp(380px, 40vw, 620px);
+    overflow: hidden;
+}
+
+.hero-carousel .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-carousel .carousel-slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-carousel .carousel-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+}
+
+.hero-carousel .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    border: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.2s ease;
+    z-index: 5;
+}
+
+.hero-carousel:hover .carousel-arrow { opacity: 1; }
+.hero-carousel .carousel-arrow:hover { background: rgba(0,0,0,0.5); }
+.hero-carousel .carousel-arrow.prev { left: 16px; }
+.hero-carousel .carousel-arrow.next { right: 16px; }
+
+.hero-carousel .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 6;
+}
+
+.hero-carousel .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    border: 2px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.hero-carousel .carousel-dot.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Hero text adjustments for readability */
+.hero-carousel .hero-title { color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+.hero-carousel .hero-subtitle { color: rgba(255,255,255,0.9); text-shadow: 0 1px 10px rgba(0,0,0,0.3); }
+.hero-carousel .promo-badge { background-color: rgba(224, 248, 248, 0.9); color: var(--primary-color); }
+
 .hero-title {
     font-size: 3.2rem; /* Large, impactful text */
     line-height: 1.2;
-    background: linear-gradient(90deg, #1d3557, #333333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--secondary-color);
 }
 
 .hero-subtitle {
@@ -134,13 +225,19 @@ h3 {
 }
 
 .promo-badge {
-    background-color: var(--accent-color);
-    color: #1d3557;
-    padding: 5px 15px;
-    border-radius: 30px;
-    font-weight: bold;
+    background-color: #e0f8f8;
+    color: var(--primary-color);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 600;
     display: inline-block;
     margin-bottom: 20px;
+}
+
+/* Make all images responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Fix for overlapping image in the hero section */
@@ -191,7 +288,7 @@ h3 {
 
 .solution-card:hover .icon,
 .solution-card:hover h3 {
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 
 /* ===================================
@@ -230,14 +327,14 @@ h3 {
    7. Final CTA Section Styles
 ====================================== */
 .final-cta {
-    background-color: var(--dark-color);
+    background-color: var(--secondary-color);
 }
 
 /* ===================================
    8. Footer Styles
 ====================================== */
 .footer-section {
-    background-color: var(--dark-color);
+    background-color: var(--secondary-color);
     color: rgba(255, 255, 255, 0.7);
     padding: 60px 0;
 }
@@ -353,7 +450,7 @@ h3 {
 
 .contact-form-wrapper {
     padding: 40px;
-    background-color: var(--light-gray);
+    background-color: var(--subtle-bg);
     border-radius: 10px;
 }
 
@@ -473,7 +570,351 @@ textarea.form-control {
 }
 
 /* ===================================
-   14. ERP Page Styles
+   13. Header & Navigation Fixes
+====================================== */
+/* Fix for sticky header - ensure it works properly when scrolling */
+header.sticky-top {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--background-color, white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Add padding to body to account for fixed header */
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    /* Removed fixed padding as we're using sticky positioning */
+}
+
+html {
+    /* Removed overflow-x: hidden which interferes with sticky positioning */
+}
+
+.navbar .container-fluid {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Removed overflow-x: hidden which interferes with sticky positioning */
+}
+
+.container-fluid {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+    header.sticky-top,
+    .navbar,
+    .navbar .container-fluid,
+    .collapse.navbar-collapse,
+    .navbar-nav {
+        overflow: visible !important; /* allow dropdowns to escape navbar without scrolling */
+    }
+
+    /* Center nav list across the full header width */
+    .navbar .collapse.navbar-collapse {
+        flex: 1 1 auto;
+    }
+    .navbar .navbar-nav {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.navbar-nav .nav-link {
+    white-space: nowrap;
+    padding: 0.35rem 0.65rem; /* slightly tighter to avoid wrap/scroll */
+    font-size: 0.95rem;
+}
+
+/* Adjust search bar for different screen sizes */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .navbar .mx-auto.d-none.d-lg-block {
+        width: 15% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .navbar .mx-auto.d-none.d-lg-block {
+        width: 15% !important;
+    }
+}
+
+/* Specific fix for common desktop resolutions where overflow occurs */
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .navbar-nav .nav-link {
+        padding: 0.3rem 0.55rem;
+        font-size: 0.9rem;
+    }
+
+    .navbar .mx-auto.d-none.d-lg-block {
+        width: 12% !important;
+    }
+
+    .btn-bulk-order {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Prevent navbar overflow */
+.navbar-nav {
+    flex-wrap: nowrap;
+    overflow: visible; /* ensure dropdown isn't clipped by nav */
+    max-width: 100%;
+}
+
+/* Adjust the bulk order button for better spacing */
+.btn-bulk-order {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Make dropdown menus more compact */
+.dropdown-menu {
+    min-width: 200px;
+}
+
+/* Guard against mega menu causing layout shift/scroll on desktop */
+@media (min-width: 992px) {
+    .mega-menu {
+        max-width: min(90vw, 800px);
+        overflow: visible !important;
+    }
+}
+
+/* Ensure the navbar collapse doesn't cause overflow */
+.collapse.navbar-collapse {
+    max-width: 100%;
+    /* Removed overflow-x: hidden which interferes with sticky positioning */
+}
+
+/* Navigation item specific adjustments */
+.nav-item {
+    margin-right: 0.2rem;
+}
+
+.navbar-nav .dropdown-menu {
+    min-width: 300px; /* Wider dropdown for better content display */
+}
+
+/* Accessible focus styles */
+:focus-visible {
+    outline: 3px solid rgba(0, 184, 185, 0.5);
+    outline-offset: 2px;
+}
+
+/* Reduce motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===================================
+   14. Enable Hover Dropdowns (Reliable Method)
+====================================== */
+@media all and (min-width: 992px) {
+    /* Completely override Bootstrap's dropdown styles */
+    .dropdown-menu {
+        display: block !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(10px) !important;
+        transition: all 0.3s ease !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        z-index: 1000 !important;
+        float: left !important;
+        min-width: 10rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 1rem !important;
+        color: #212529 !important;
+        text-align: left !important;
+        list-style: none !important;
+        background-color: #fff !important;
+        background-clip: padding-box !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Override Bootstrap's show class */
+    .dropdown-menu.show {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+    
+    /* Specific rules for navbar dropdowns */
+    .navbar-nav .dropdown {
+        position: relative;
+    }
+    
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+    }
+}
+
+/* ===================================
+   15. Professional Mega Menu (with Image Preview)
+====================================== */
+
+/* SIMPLEST POSSIBLE FIX - NO SCROLLING ANYWHERE */
+.dropdown-menu,
+.mega-menu,
+.mega-menu .row,
+.mega-menu .col-md-7,
+.mega-menu .col-md-5,
+.mega-menu-links,
+.mega-menu-image {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+/* SHOW DROPDOWNS ON HOVER */
+.dropdown:hover .dropdown-menu {
+    display: block !important;
+}
+
+/* Keep menu visible when hovering the menu itself (prevents flicker) */
+.dropdown .dropdown-menu:hover {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.navbar-nav .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 14px 16px; /* slightly tighter */
+    margin-top: 0; /* remove hover gap that closes menu */
+    width: 600px;
+    max-width: 90vw; /* prevent viewport overflow creating scrollbars */
+    box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mega-menu-links a {
+    display: block;
+    padding: 6px 12px; /* tighter vertical spacing */
+    line-height: 1.3; /* compact, readable */
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Ensure sub-category links stack vertically in a single column */
+.mega-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* consistent compact spacing between items */
+}
+
+/* Keep single-column lists on all viewport sizes for consistency */
+
+/* Targeted multi-column layout ONLY for All Products menu, keeping tight spacing */
+@media (min-width: 992px) and (max-width: 1399px) {
+    .mega-menu[aria-labelledby="allProductsDropdown"] .mega-menu-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 12px; /* compact spacing, same visual rhythm */
+    }
+}
+
+@media (min-width: 1400px) {
+    .mega-menu[aria-labelledby="allProductsDropdown"] .mega-menu-links {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px 12px; /* compact spacing */
+    }
+}
+
+.mega-menu-links a:hover {
+    background-color: var(--subtle-bg);
+    color: var(--primary-color);
+}
+
+.mega-menu-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (min-width: 1200px) {
+    .mega-menu {
+        width: min(900px, 90vw); /* wider panel for multi-column layout, but not wider than viewport */
+        padding: 20px; /* comfortable inner spacing */
+    }
+}
+
+@media (max-width: 1199px) {
+    .mega-menu {
+        width: 95vw;
+        max-width: 600px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu {
+        display: none !important;
+    }
+    
+    .dropdown-menu.show {
+        display: block !important;
+    }
+}
+
+/* ===================================
+   16. ERP Page Styles
 ====================================== */
 .serve-card {
     padding: 20px;
@@ -500,93 +941,35 @@ textarea.form-control {
 }
 
 /* ===================================
-   15. Professional Mega Menu (with Image Preview)
-====================================== */
-.navbar-nav .dropdown .dropdown-menu {
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin-top: 10px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-}
-
-.navbar-nav .dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.mega-menu {
-    width: 600px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.mega-menu-links a {
-    display: block;
-    padding: 8px 15px;
-    text-decoration: none;
-    color: var(--secondary-color);
-    font-weight: bold;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-}
-
-.mega-menu-links a:hover {
-    background-color: var(--light-gray);
-    color: var(--primary-color);
-}
-
-.mega-menu-image img {
-    width: 100%;
-    border-radius: 8px;
-    transition: opacity 0.3s ease-in-out; /* Fade effect for image change */
-}
-
-/* ===================================
-   16. Enable Hover Dropdowns (Reliable Method)
-====================================== */
-@media all and (min-width: 992px) {
-    .navbar-nav .dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0;
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-}
-
-/* ===================================
    17. Category Cards Styles
 ====================================== */
 .category-card {
     background-color: #fff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 22px;
     text-align: center;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    min-width: 150px;
-    margin-right: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    min-width: 170px;
+    border: 1px solid var(--border-color);
 }
 
 .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
 }
 
 .category-card .icon {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
     margin-bottom: 15px;
 }
 
 .category-card h5 {
-    font-size: 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--secondary-color);
     margin-bottom: 0;
 }
 
@@ -659,9 +1042,12 @@ textarea.form-control {
 ====================================== */
 .category-scroll-container {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap; /* allow items to move to the next line */
+    overflow-x: visible; /* no horizontal scroll */
     padding: 10px 0;
-    scrollbar-width: thin;
+    gap: 20px; /* consistent spacing */
+    justify-content: center; /* center items in the row */
+    scrollbar-width: none; /* hide any fallback scrollbars */
 }
 
 .category-scroll-container::-webkit-scrollbar {

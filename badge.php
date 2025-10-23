@@ -35,7 +35,7 @@ include 'includes/header.php';
                 ₹ <?php echo number_format($p['price'], 2); ?>
               </div>
               <a href="product.php?id=<?php echo $p['id']; ?>" 
-                 class="btn btn-sm btn-outline-primary">
+                 class="btn btn-sm btn-secondary">
                 View
               </a>
             </div>

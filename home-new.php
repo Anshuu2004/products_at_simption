@@ -14,8 +14,8 @@ include 'includes/header.php';
                     <p class="hero-subtitle lead my-4">
                         Get Ready with Summer Sports T-shirt
                     </p>
-                    <a href="quote-new.php" class="btn btn-accent btn-lg me-2">Shop Now</a>
-                    <a href="products-new.php" class="btn btn-outline-primary btn-lg">View Collection</a>
+                    <a href="quote-new.php" class="btn btn-primary btn-lg me-2">Shop Now</a>
+                    <a href="products-new.php" class="btn btn-secondary btn-lg">View Collection</a>
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 text-center">
                     <img src="assets/images/general/hero-image.png" class="img-fluid" alt="Summer Sports T-shirt">
@@ -116,7 +116,7 @@ include 'includes/header.php';
                                 </a>
                             </h5>
                             <p class="product-price">₹<?php echo number_format($product['price'], 2); ?></p>
-                            <a href="product-new.php?id=<?php echo $product['id']; ?>" class="btn btn-order-now">Order Now</a>
+                            <a href="product-new.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">Order Now</a>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ include 'includes/header.php';
             </div>
             
             <div class="text-center mt-5">
-                <a href="products-new.php" class="btn btn-outline-primary btn-lg">View All Products</a>
+                <a href="products-new.php" class="btn btn-secondary btn-lg">View All Products</a>
             </div>
         </div>
     </section>
@@ -308,7 +308,7 @@ include 'includes/header.php';
         <div class="container text-center">
             <h2 class="text-white">Ready to Start Your Project?</h2>
             <p class="lead text-white-50">Let's create a solution that fits your needs and budget.</p>
-            <a href="quote-new.php" class="btn btn-accent btn-lg mt-4">Get a Quote</a>
+            <a href="quote-new.php" class="btn btn-primary btn-lg mt-4">Get a Quote</a>
         </div>
     </section>
 </main>

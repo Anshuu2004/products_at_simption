@@ -48,7 +48,7 @@ include 'includes/header.php'; ?>
         <div class="container text-center">
             <h2 class="text-white">Explore All 50+ Modules in Detail</h2>
             <p class="lead text-white-50">Our main company website provides an in-depth look at every feature, software plans, and live demos.</p>
-            <a href="https://simption.com/" class="btn btn-accent btn-lg mt-4" target="_blank">Visit Main Website</a>
+            <a href="https://simption.com/" class="btn btn-primary btn-lg mt-4" target="_blank">Visit Main Website</a>
         </div>
     </section>
 </main>

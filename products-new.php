@@ -88,7 +88,7 @@ include 'includes/header.php';
                                         </a>
                                     </h5>
                                     <p class="product-price">₹<?php echo number_format($product['price'], 2); ?></p>
-                                    <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-order-now w-100">View Details</a>
+                                    <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-primary w-100">View Details</a>
                                 </div>
                             </div>
                         </div>

@@ -39,7 +39,7 @@ if (!$type) {
                     <div class="lead">
                         <?php echo $type['content']; // This content is already HTML from your database ?>
                     </div>
-                    <a href="../quote.php?service=<?php echo urlencode($type['title']); ?>" class="btn btn-accent mt-4">Get a Quote for this Solution</a>
+                    <a href="../quote.php?service=<?php echo urlencode($type['title']); ?>" class="btn btn-primary mt-4">Get a Quote for this Solution</a>
                 </div>
             </div>
         </div>

@@ -69,8 +69,8 @@ if (!$product) {
                     </div>
 
                     <div class="mt-4">
-                        <a href="quote.php?product_id=<?php echo $product['id']; ?>" class="btn btn-accent btn-lg">Get a Quote</a>
-                        <a href="contact.php" class="btn btn-outline-primary btn-lg ms-2">Ask a Question</a>
+                        <a href="quote.php?product_id=<?php echo $product['id']; ?>" class="btn btn-primary btn-lg">Get a Quote</a>
+                        <a href="contact.php" class="btn btn-secondary btn-lg ms-2">Ask a Question</a>
                     </div>
                 </div>
             </div>

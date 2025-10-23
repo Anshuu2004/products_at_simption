@@ -73,48 +73,83 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Handle dropdown menus on desktop
-    if (window.innerWidth >= 992) {
-        // Enable hover to open menu
-        document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown) {
-            everydropdown.addEventListener('mouseenter', function() {
-                let el_link = this.querySelector('a[data-bs-toggle]');
-                if (el_link != null) {
-                    let nextEl = el_link.nextElementSibling;
-                    el_link.classList.add('show');
-                    nextEl.classList.add('show');
-                }
+    // COMPLETELY DISABLE BOOTSTRAP DROPDOWN FUNCTIONALITY AND IMPLEMENT CUSTOM HOVER
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+        // Prevent all Bootstrap dropdown events
+        ['show.bs.dropdown', 'shown.bs.dropdown', 'hide.bs.dropdown', 'hidden.bs.dropdown'].forEach(function(event) {
+            dropdown.addEventListener(event, function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
             });
-            everydropdown.addEventListener('mouseleave', function() {
-                let el_link = this.querySelector('a[data-bs-toggle]');
-                if (el_link != null) {
-                    let nextEl = el_link.nextElementSibling;
-                    el_link.classList.remove('show');
-                    nextEl.classList.remove('show');
-                }
-            });
-        });
 
-        // Enable hover image preview
-        document.querySelectorAll('.dropdown').forEach(function(menuElement) {
-            const previewImage = menuElement.querySelector('.mega-menu-preview-image');
-            const linksContainer = menuElement.querySelector('.mega-menu-links');
+	// Mobile (<992px): enable click-to-open for dropdowns while keeping links navigable on second tap
+	if (window.innerWidth < 992) {
+		const mobileDropdowns = document.querySelectorAll('.navbar .nav-item.dropdown');
+		mobileDropdowns.forEach(function(item) {
+			const toggleLink = item.querySelector('.nav-link');
+			const menu = item.querySelector('.dropdown-menu');
+			if (!toggleLink || !menu) return;
+
+			let openedOnce = false;
+
+			toggleLink.addEventListener('click', function(e) {
+				// If menu not open, open it and prevent navigation on first tap
+				const isOpen = menu.classList.contains('show');
+				if (!isOpen) {
+					// Close any other open mobile dropdown menus
+					document.querySelectorAll('.navbar .dropdown-menu.show').forEach(function(openMenu) {
+						openMenu.classList.remove('show');
+					});
+					menu.classList.add('show');
+					openedOnce = true;
+					e.preventDefault();
+					return;
+				}
+
+				// If already open and it's the first tap state, allow next tap to navigate
+				if (openedOnce) {
+					// reset flag so subsequent taps follow normal behavior
+					openedOnce = false;
+					return; // allow default navigation
+				}
+			});
+
+			// Close menu when clicking outside
+			document.addEventListener('click', function(event) {
+				if (!item.contains(event.target)) {
+					menu.classList.remove('show');
+					openedOnce = false;
+				}
+			});
+		});
+	}
+        });
+        
+        // Handle image preview for dropdown menus (desktop only)
+        if (window.innerWidth >= 992) {
+            const previewImage = dropdown.querySelector('.mega-menu-preview-image');
+            const linksContainer = dropdown.querySelector('.mega-menu-links');
             
             if (!previewImage || !linksContainer) return;
 
             const defaultImage = previewImage.src;
             
-            linksContainer.querySelectorAll('a[data-image]').forEach(function(link) {
+            linksContainer.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('mouseenter', function() {
-                    previewImage.src = this.getAttribute('data-image');
+                    const newImage = this.getAttribute('data-image');
+                    if (newImage) {
+                        previewImage.src = newImage;
+                    }
                 });
             });
 
+            // Reset to default image when leaving the links container
             linksContainer.addEventListener('mouseleave', function() {
                 previewImage.src = defaultImage;
             });
-        });
-    }
+        }
+    });
 
     // Handle quantity input
     const quantityInputs = document.querySelectorAll('.quantity-input');
@@ -132,4 +167,64 @@ document.addEventListener('DOMContentLoaded', function() {
             inlinePane: false,
         });
     });
+
+    // Hero Carousel (auto, loop, arrows, dots, pause on hover)
+    (function initHeroCarousel() {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const prevBtn = carousel.querySelector('.carousel-arrow.prev');
+        const nextBtn = carousel.querySelector('.carousel-arrow.next');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
+
+        let currentIndex = 0;
+        let intervalId = null;
+        const slideCount = slides.length;
+        const intervalMs = 2000;
+
+        // Create dots
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+            dot.setAttribute('role', 'tab');
+            dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+            dot.addEventListener('click', () => goTo(idx));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+        function updateUI() {
+            track.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+        }
+
+        function goTo(index) {
+            currentIndex = (index + slideCount) % slideCount;
+            updateUI();
+        }
+
+        function next() { goTo(currentIndex + 1); }
+        function prev() { goTo(currentIndex - 1); }
+
+        function startAuto() {
+            stopAuto();
+            intervalId = setInterval(next, intervalMs);
+        }
+        function stopAuto() {
+            if (intervalId) { clearInterval(intervalId); intervalId = null; }
+        }
+
+        // Events
+        nextBtn.addEventListener('click', () => { next(); startAuto(); });
+        prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+        carousel.addEventListener('mouseenter', stopAuto);
+        carousel.addEventListener('mouseleave', startAuto);
+
+        // Init
+        updateUI();
+        startAuto();
+    })();
 });

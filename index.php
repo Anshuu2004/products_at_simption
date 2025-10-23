@@ -4,23 +4,65 @@ include 'includes/header.php';
 ?>
 
 <main>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 text-center text-lg-start">
-                    <div class="promo-badge">Get up to 30% off</div>
-                    <h1 class="hero-title">Stay Cool, Stay Stylish</h1>
-                    <p class="hero-subtitle lead my-4">
-                        Get Ready with Summer Sports T-shirt
-                    </p>
-                    <a href="quote.php" class="btn btn-accent btn-lg me-2">Shop Now</a>
-                    <a href="products.php" class="btn btn-outline-primary btn-lg">View Collection</a>
+    <!-- Hero Section (Carousel) -->
+    <section class="hero-section p-0">
+        <div class="hero-carousel" id="heroCarousel" aria-label="Featured promotions">
+            <div class="carousel-track">
+                <?php
+                $dir = __DIR__ . '/assets/images/general';
+                $slides = [];
+                if (is_dir($dir)) {
+                    $all = scandir($dir);
+                    foreach ($all as $f) {
+                        if ($f === '.' || $f === '..') continue;
+                        $ext = strtolower(pathinfo($f, PATHINFO_EXTENSION));
+                        if (in_array($ext, ['jpg', 'jpeg'])) {
+                            $slides[] = $f;
+                        }
+                    }
+                }
+                sort($slides, SORT_NATURAL | SORT_FLAG_CASE);
+                $index = 0;
+                foreach ($slides as $file):
+                    $url = 'assets/images/general/' . rawurlencode($file);
+                ?>
+                <?php if ($index == 4): ?>
+                <div class="carousel-slide" data-index="<?php echo $index; ?>" style="background-image: url('<?php echo $url; ?>');">
+                    <div class="carousel-overlay container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h1 class="hero-title">School Management Software</h1>
+                                <p class="hero-subtitle lead my-4">School Software Development, Website Designing, RFID Card & Face base Attendance System & Android App.</p>
+                                <a href="quote.php" class="btn btn-primary btn-lg me-2">Get a Quote</a>
+                                <a href="products.php" class="btn btn-secondary btn-lg">Explore Products</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 mt-5 mt-lg-0 text-center">
-                    <img src="assets/images/general/hero-image.png" class="img-fluid" alt="Summer Sports T-shirt">
+                <?php else: ?>
+                <div class="carousel-slide" data-index="<?php echo $index; ?>" style="background-image: url('<?php echo $url; ?>');">
+                    <div class="carousel-overlay container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="promo-badge">Featured</div>
+                                <h1 class="hero-title">Discover What’s New</h1>
+                                <p class="hero-subtitle lead my-4">High-quality solutions tailored for schools and businesses.</p>
+                                <a href="quote.php" class="btn btn-primary btn-lg me-2">Get a Quote</a>
+                                <a href="products.php" class="btn btn-secondary btn-lg">Explore Products</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <?php endif; ?>
+                <?php $index++; endforeach; ?>
             </div>
+            <button class="carousel-arrow prev" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-arrow next" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="carousel-dots" role="tablist" aria-label="Carousel Pagination"></div>
         </div>
     </section>
 
@@ -55,7 +97,7 @@ include 'includes/header.php';
                                 </a>
                             </h5>
                             <p class="product-price">₹<?php echo number_format($product['price'], 2); ?></p>
-                            <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-order-now">Order Now</a>
+                            <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">Order Now</a>
                         </div>
                     </div>
                 </div>
@@ -75,48 +117,34 @@ include 'includes/header.php';
             </div>
 
             <div class="category-scroll-container">
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-mug-hot"></i>
-                    </div>
-                    <h5>Drinkware</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h5>T-Shirts</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h5>Notebooks</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-id-card"></i>
-                    </div>
+                <a href="id-cards.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-id-card"></i></div>
                     <h5>ID Cards</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-tags"></i>
-                    </div>
-                    <h5>Stickers</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h5>Gifts</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-print"></i>
-                    </div>
-                    <h5>Printing</h5>
-                </div>
+                </a>
+                <a href="attendance.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-user-check"></i></div>
+                    <h5>Attendance Devices</h5>
+                </a>
+                <a href="lanyard.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-link"></i></div>
+                    <h5>Lanyards</h5>
+                </a>
+                <a href="badge.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-award"></i></div>
+                    <h5>Badges</h5>
+                </a>
+                <a href="erp.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h5>ERP & Software</h5>
+                </a>
+                <a href="products.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-print"></i></div>
+                    <h5>Printing & Branding</h5>
+                </a>
+                <a href="products.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-toolbox"></i></div>
+                    <h5>Accessories</h5>
+                </a>
             </div>
         </div>
     </section>
@@ -231,7 +259,7 @@ include 'includes/header.php';
         <div class="container text-center">
             <h2 class="text-white">Ready to Start Your Project?</h2>
             <p class="lead text-white-50">Let's create a solution that fits your needs and budget.</p>
-            <a href="quote.php" class="btn btn-accent btn-lg mt-4">Get a Quote</a>
+            <a href="quote.php" class="btn btn-primary btn-lg mt-4">Get a Quote</a>
         </div>
     </section>
 </main>

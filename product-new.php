@@ -69,8 +69,8 @@ if (!$product) {
                     </div>
 
                     <div class="mt-4">
-                        <a href="quote.php?product_id=<?php echo $product['id']; ?>" class="btn btn-accent btn-lg">Get a Quote</a>
-                        <a href="contact.php" class="btn btn-outline-primary btn-lg ms-2">Ask a Question</a>
+                        <a href="quote.php?product_id=<?php echo $product['id']; ?>" class="btn btn-primary btn-lg">Get a Quote</a>
+                        <a href="contact.php" class="btn btn-secondary btn-lg ms-2">Ask a Question</a>
                     </div>
 
                     <!-- Product Meta -->
@@ -196,7 +196,7 @@ if (!$product) {
                                         </a>
                                     </h5>
                                     <p class="product-price">₹<?php echo number_format($related['price'], 2); ?></p>
-                                    <a href="product-new.php?id=<?php echo $related['id']; ?>" class="btn btn-order-now">View Details</a>
+                                    <a href="product-new.php?id=<?php echo $related['id']; ?>" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
                         </div>
