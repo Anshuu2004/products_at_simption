@@ -1,77 +1,44 @@
 <?php 
+require 'connection/db.php'; 
 include 'includes/header.php'; 
-?> 
 
-<div class="container py-5">
-  <h1>Attendance Management</h1>
-  <p class="text-muted">
-    We provide multiple attendance capture methods. Click below to explore each option.
-  </p>
+// Fetch all attendance types from the database
+$stmt = $pdo->query("SELECT * FROM attendance_types ORDER BY id ASC");
+$attendance_types = $stmt->fetchAll();
+?>
 
-  <div class="row g-3">
-    <div class="col-md-4">
-      <a href="attendance/rfid.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>RFID Attendance</h5>
-          <p class="small text-muted">Smart card based tracking</p>
+<main>
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="text-white">Attendance Management Systems</h1>
         </div>
-      </a>
-    </div>
+    </section>
 
-    <div class="col-md-4">
-      <a href="attendance/face.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>Face Recognition</h5>
-          <p class="small text-muted">AI‑powered biometric system</p>
-        </div>
-      </a>
-    </div>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-md-8 mx-auto">
+                    <h2 class="section-title">A Solution for Every Need</h2>
+                    <p class="lead">From contactless RFID and advanced face recognition to mobile geo-fencing, we offer a complete range of attendance systems designed for modern schools, colleges, and businesses.</p>
+                </div>
+            </div>
 
-    <div class="col-md-4">
-      <a href="attendance/fingerprint.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>Fingerprint</h5>
-          <p class="small text-muted">Secure biometric verification</p>
+            <div class="row g-4">
+                <?php foreach ($attendance_types as $type): ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="solution-card h-100">
+                        <div class="icon">
+                            <i class="fas fa-check-circle"></i> 
+                        </div>
+                        <h3><?php echo htmlspecialchars($type['title']); ?></h3>
+                        <p><?php echo htmlspecialchars($type['short_desc']); ?></p>
+                        <a href="attendance/<?php echo htmlspecialchars($type['slug']); ?>.php" class="stretched-link"></a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
         </div>
-      </a>
-    </div>
-
-    <div class="col-md-4">
-      <a href="attendance/qr.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>QR Code</h5>
-          <p class="small text-muted">Scan‑based attendance</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-4">
-      <a href="attendance/barcode.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>Barcode</h5>
-          <p class="small text-muted">Simple code scanning</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-4">
-      <a href="attendance/geo.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>Geo Location</h5>
-          <p class="small text-muted">GPS‑based attendance</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-4">
-      <a href="attendance/manual.php" class="text-decoration-none">
-        <div class="card p-3 h-100 text-center">
-          <h5>Manual Entry</h5>
-          <p class="small text-muted">Traditional record keeping</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
+    </section>
+</main>
 
 <?php include 'includes/footer.php'; ?>

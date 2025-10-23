@@ -49,44 +49,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include 'includes/header.php'; 
 ?> 
 
-<div class="container py-5">
-    <h2>Register</h2>
-
-    <?php if (!empty($error)): ?>
-        <div class="alert alert-danger">
-            <?php echo htmlspecialchars($error); ?>
+<main>
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="text-white">Create an Account</h1>
         </div>
-    <?php endif; ?>
+    </section>
 
-    <?php if (!empty($success)): ?>
-        <div class="alert alert-success">
-            <?php echo htmlspecialchars($success); ?>
-        </div>
-    <?php endif; ?>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="contact-form-wrapper">
+                        <?php if (!empty($error)): ?>
+                            <div class="alert alert-danger mb-4">
+                                <?php echo htmlspecialchars($error); ?>
+                            </div>
+                        <?php endif; ?>
 
-    <form method="post" class="mt-3">
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input name="name" class="form-control" required>
+                        <?php if (!empty($success)): ?>
+                            <div class="alert alert-success mb-4">
+                                <?php echo htmlspecialchars($success); ?>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input name="name" type="text" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input name="email" type="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password</label>
+                                <input name="password_confirm" type="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Register</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input name="email" type="email" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" required>
-        </div>
-        
-        <div class="mb-3">
-            <label class="form-label">Confirm Password</label>
-            <input name="password_confirm" type="password" class="form-control" required>
-        </div>
-
-        <button class="btn btn-primary">Register</button>
-    </form>
-</div>
+    </section>
+</main>
 
 <?php include 'includes/footer.php'; ?>

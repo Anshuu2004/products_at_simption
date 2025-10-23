@@ -1,55 +1,135 @@
-/* assets/js/main.js */
-/* Hover preview: floating preview on desktop, hero update fallback on small screens */
-document.addEventListener('DOMContentLoaded', function(){
-  const floatPreview = document.createElement('div');
-  floatPreview.className = 'float-preview';
-  floatPreview.innerHTML = '<img src="" alt="preview" style="width:100%;height:100%;object-fit:cover;">';
-  document.body.appendChild(floatPreview);
+// Main JavaScript file for the Simption Tech website
 
-  const fpImg = floatPreview.querySelector('img');
-  const heroImg = document.getElementById('heroPreviewImg');
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 
-  let isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-  function onEnter(e){
-    const target = e.currentTarget;
-    const large = target.dataset.large;
-    if (!large) return;
-    if (!isMobile) {
-      fpImg.src = large;
-      floatPreview.style.display = 'block';
-    } else {
-      // mobile fallback: update hero image
-      heroImg.src = large;
+    // Handle floating chat bubble click
+    const floatingChat = document.querySelector('.floating-chat');
+    if (floatingChat) {
+        floatingChat.addEventListener('click', function() {
+            alert('Chat support will be implemented here!');
+        });
     }
-  }
 
-  function onMove(e){
-    if (!isMobile) {
-      const x = e.clientX + 20;
-      const y = e.clientY + 20;
-      floatPreview.style.left = x + 'px';
-      floatPreview.style.top = y + 'px';
+    // Handle search bar focus
+    const searchBars = document.querySelectorAll('.search-bar');
+    searchBars.forEach(function(searchBar) {
+        searchBar.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+        
+        searchBar.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    });
+
+    // Handle product card hover effects
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Handle category card hover effects
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Handle trust badge hover effects
+    const trustBadges = document.querySelectorAll('.trust-badge');
+    trustBadges.forEach(function(badge) {
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Handle mobile menu toggle
+    const mobileToggle = document.querySelector('.navbar-toggler');
+    const mobileMenu = document.querySelector('.navbar-collapse');
+    
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('show');
+        });
     }
-  }
 
-  function onLeave(){
-    if (!isMobile) {
-      floatPreview.style.display = 'none';
+    // Handle dropdown menus on desktop
+    if (window.innerWidth >= 992) {
+        // Enable hover to open menu
+        document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown) {
+            everydropdown.addEventListener('mouseenter', function() {
+                let el_link = this.querySelector('a[data-bs-toggle]');
+                if (el_link != null) {
+                    let nextEl = el_link.nextElementSibling;
+                    el_link.classList.add('show');
+                    nextEl.classList.add('show');
+                }
+            });
+            everydropdown.addEventListener('mouseleave', function() {
+                let el_link = this.querySelector('a[data-bs-toggle]');
+                if (el_link != null) {
+                    let nextEl = el_link.nextElementSibling;
+                    el_link.classList.remove('show');
+                    nextEl.classList.remove('show');
+                }
+            });
+        });
+
+        // Enable hover image preview
+        document.querySelectorAll('.dropdown').forEach(function(menuElement) {
+            const previewImage = menuElement.querySelector('.mega-menu-preview-image');
+            const linksContainer = menuElement.querySelector('.mega-menu-links');
+            
+            if (!previewImage || !linksContainer) return;
+
+            const defaultImage = previewImage.src;
+            
+            linksContainer.querySelectorAll('a[data-image]').forEach(function(link) {
+                link.addEventListener('mouseenter', function() {
+                    previewImage.src = this.getAttribute('data-image');
+                });
+            });
+
+            linksContainer.addEventListener('mouseleave', function() {
+                previewImage.src = defaultImage;
+            });
+        });
     }
-  }
 
-  document.querySelectorAll('.product-card').forEach(el=>{
-    el.addEventListener('mouseenter', onEnter);
-    el.addEventListener('mousemove', onMove);
-    el.addEventListener('mouseleave', onLeave);
-    // also support focus for accessibility
-    el.addEventListener('focus', onEnter);
-    el.addEventListener('blur', onLeave);
-  });
+    // Handle quantity input
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    quantityInputs.forEach(function(input) {
+        input.addEventListener('change', function() {
+            if (this.value < 1) this.value = 1;
+        });
+    });
 
-  // update isMobile on resize
-  window.addEventListener('resize', function(){
-    isMobile = window.matchMedia("(max-width: 768px)").matches;
-  });
+    // Handle product image zoom
+    const zoomLinks = document.querySelectorAll('.zoom-link');
+    zoomLinks.forEach(function(zoomLink) {
+        new Drift(zoomLink, {
+            paneContainer: document.querySelector('.zoom-pane'),
+            inlinePane: false,
+        });
+    });
 });

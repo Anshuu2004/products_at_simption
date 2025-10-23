@@ -35,28 +35,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include 'includes/header.php'; 
 ?> 
 
-<div class="container py-5">
-  <h2>Login</h2>
+<main>
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="text-white">Login to Your Account</h1>
+        </div>
+    </section>
 
-  <?php if (!empty($error)): ?>
-    <div class="alert alert-danger">
-      <?php echo htmlspecialchars($error); ?>
-    </div>
-  <?php endif; ?>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="contact-form-wrapper">
+                        <?php if (!empty($error)): ?>
+                            <div class="alert alert-danger mb-4">
+                                <?php echo htmlspecialchars($error); ?>
+                            </div>
+                        <?php endif; ?>
 
-  <form method="post" class="mt-3">
-    <div class="mb-3">
-      <label class="form-label">Email</label>
-      <input name="email" type="email" class="form-control" required>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Password</label>
-      <input name="password" type="password" class="form-control" required>
-    </div>
-
-    <button class="btn btn-primary">Login</button>
-  </form>
-</div>
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input name="email" type="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input name="password" type="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 <?php include 'includes/footer.php'; ?>

@@ -1,46 +1,49 @@
 <?php 
-// attendance/template.php
-
+// This part of your PHP logic remains the same
 require __DIR__ . '/../connection/db.php'; 
 include __DIR__ . '/../includes/header.php'; 
 
-// $slug must be provided by the including file
 if (empty($slug)) {
-    echo "<div class='container py-5'>
-            <div class='alert alert-warning'>Attendance page not configured.</div>
-          </div>";
-    include __DIR__ . '/../includes/footer.php'; 
+    echo "<div class='container section-padding'><p class='alert alert-danger'>Page not configured correctly.</p></div>";
+    include __DIR__ . '/../includes/footer.php';
     exit;
 }
 
 $stmt = $pdo->prepare("SELECT * FROM attendance_types WHERE slug = ? LIMIT 1");
 $stmt->execute([$slug]);
-$a = $stmt->fetch();
-?> 
+$type = $stmt->fetch();
 
-<div class="container py-5">
-  <?php if (!$a): ?>
-    <h2>Attendance</h2>
-    <p class="text-muted">Content coming soon.</p>
-  <?php else: ?>
-    <h2><?php echo htmlspecialchars($a['title']); ?></h2>
+// If no data is found, show a simple error.
+if (!$type) {
+    echo "<div class='container section-padding'><p class='alert alert-warning'>Content for this page is coming soon.</p></div>";
+    include __DIR__ . '/../includes/footer.php';
+    exit;
+}
+?>
 
-    <?php if ($a['image']): ?>
-      <img src="../assets/images/<?php echo htmlspecialchars($a['image']); ?>" 
-           class="img-fluid mb-3" 
-           alt="<?php echo htmlspecialchars($a['title']); ?>">
-    <?php endif; ?>
+<main>
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="text-white"><?php echo htmlspecialchars($type['title']); ?></h1>
+        </div>
+    </section>
 
-    <p class="small text-muted">
-      <?php echo htmlspecialchars($a['short_desc']); ?>
-    </p>
-
-    <div>
-      <?php echo $a['content']; ?>
-    </div>
-
-    <a class="btn btn-primary mt-3" href="../contact.php?enquiry=1">Enquire</a>
-  <?php endif; ?>
-</div>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <img src="../assets/images/attendance/<?php echo htmlspecialchars($type['image']); ?>" class="img-fluid rounded shadow-lg" alt="<?php echo htmlspecialchars($type['title']); ?>">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title"><?php echo htmlspecialchars($type['title']); ?></h2>
+                    <div class="lead">
+                        <?php echo $type['content']; // This content is already HTML from your database ?>
+                    </div>
+                    <a href="../quote.php?service=<?php echo urlencode($type['title']); ?>" class="btn btn-accent mt-4">Get a Quote for this Solution</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

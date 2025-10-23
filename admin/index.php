@@ -18,9 +18,11 @@ try {
     $totalClients = $pdo->query("SELECT COUNT(*) FROM clients")->fetchColumn();
     $totalMessages = $pdo->query("SELECT COUNT(*) FROM contact_messages")->fetchColumn();
     $totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_admin = 0")->fetchColumn(); // Counting non-admin users
+    $totalQuotes = $pdo->query("SELECT COUNT(*) FROM quote_requests")->fetchColumn();
 } catch (PDOException $e) {
     // If there's a database error (e.g., table not found), set counts to 0 to avoid crashing the page.
     $totalProducts = $totalClients = $totalMessages = $totalUsers = "Error";
+    $totalProducts = $totalClients = $totalMessages = $totalUsers = $totalQuotes = "Error";
     // For debugging, you could log the error: error_log($e->getMessage());
 }
 
@@ -78,6 +80,10 @@ include '../includes/header.php';
             <a href="clients.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 Manage Clients
                 <span class="badge bg-success rounded-pill"><?php echo $totalClients; ?></span>
+            </a>
+            <a href="quotes.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                Manage Quote Requests
+                <span class="badge bg-warning rounded-pill"><?php echo $totalQuotes; ?></span>
             </a>
             <a href="messages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                 View Contact Messages

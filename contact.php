@@ -27,84 +27,72 @@ $enquiry     = $_GET['enquiry'] ?? null;
 $enquiryList = $_SESSION['enquiry'] ?? [];
 ?> 
 
-<div class="container py-5">
-  <div class="row">
-
-    <!-- Contact Form -->
-    <div class="col-md-7">
-      <h2>Contact Us</h2>
-
-      <?php if (!empty($error)): ?>
-        <div class="alert alert-danger">
-          <?php echo htmlspecialchars($error); ?>
+<main>
+    <section class="page-header">
+        <div class="container text-center">
+            <h1 class="text-white">Get In Touch</h1>
         </div>
-      <?php endif; ?>
+    </section>
 
-      <?php if (!empty($success)): ?>
-        <div class="alert alert-success">
-          <?php echo htmlspecialchars($success); ?>
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <h2 class="section-title">Contact Information</h2>
+                    <p class="mb-4">We're here to answer any questions you may have. Reach out to us and we'll respond as soon as we can.</p>
+                    
+                    <div class="contact-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h5>Our Office</h5>
+                            <p>Your Company Address, Bhopal, Madhya Pradesh</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h5>Email Us</h5>
+                            <p><a href="mailto:info@simption.com">info@simption.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h5>Call Us</h5>
+                            <p><a href="tel:+911234567890">+91 12345 67890</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="contact-form-wrapper">
+                        <h2 class="section-title">Send Us a Message</h2>
+                        <form action="contact_send.php" method="POST">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      <?php endif; ?>
-
-      <form method="post" class="mt-3">
-        <div class="mb-3">
-          <label class="form-label">Name</label>
-          <input name="name" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input name="email" type="email" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Subject</label>
-          <input name="subject" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Message</label>
-          <textarea name="message" class="form-control" rows="5" required></textarea>
-        </div>
-
-        <button class="btn btn-primary">Send Message</button>
-      </form>
-    </div>
-
-    <!-- Enquiry Sidebar -->
-    <div class="col-md-5">
-      <h5>Current Enquiry</h5>
-
-      <?php if (empty($enquiryList)): ?>
-        <div class="text-muted">
-          No products added to enquiry. Add from a product page.
-        </div>
-      <?php else: ?>
-        <ul class="list-group">
-          <?php foreach ($enquiryList as $item): ?>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong><?php echo htmlspecialchars($item['title']); ?></strong><br>
-                <small>₹ <?php echo number_format($item['price'], 2); ?></small>
-              </div>
-              <div>
-                <img src="assets/images/<?php echo htmlspecialchars($item['image']); ?>" 
-                     style="height:50px; object-fit:cover;" 
-                     alt="">
-              </div>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-
-        <div class="mt-3">
-          <small class="text-muted">
-            When you submit this form, your selected products will be included in the enquiry email (SMTP in Step 5).
-          </small>
-        </div>
-      <?php endif; ?>
-    </div>
-
-  </div>
-</div>
+    </section>
+</main>
 
 <?php include 'includes/footer.php'; ?>

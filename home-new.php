@@ -14,11 +14,72 @@ include 'includes/header.php';
                     <p class="hero-subtitle lead my-4">
                         Get Ready with Summer Sports T-shirt
                     </p>
-                    <a href="quote.php" class="btn btn-accent btn-lg me-2">Shop Now</a>
-                    <a href="products.php" class="btn btn-outline-primary btn-lg">View Collection</a>
+                    <a href="quote-new.php" class="btn btn-accent btn-lg me-2">Shop Now</a>
+                    <a href="products-new.php" class="btn btn-outline-primary btn-lg">View Collection</a>
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 text-center">
                     <img src="assets/images/general/hero-image.png" class="img-fluid" alt="Summer Sports T-shirt">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Navigation -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center mb-5">Shop by Category</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products-new.php" class="solution-card text-center">
+                        <div class="icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3>ID Cards</h3>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products-new.php" class="solution-card text-center">
+                        <div class="icon">
+                            <i class="fas fa-mug-hot"></i>
+                        </div>
+                        <h3>Drinkware</h3>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products-new.php" class="solution-card text-center">
+                        <div class="icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>T-Shirts</h3>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products-new.php" class="solution-card text-center">
+                        <div class="icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Notebooks</h3>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products-new.php" class="solution-card text-center">
+                        <div class="icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3>Stickers</h3>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products-new.php" class="solution-card text-center">
+                        <div class="icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Gifts</h3>
+                    </a>
                 </div>
             </div>
         </div>
@@ -42,24 +103,28 @@ include 'includes/header.php';
                 ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="product-card">
-                        <a href="product.php?id=<?php echo $product['id']; ?>">
+                        <a href="product-new.php?id=<?php echo $product['id']; ?>">
                             <img src="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>" 
                                  class="product-card-img" 
                                  alt="<?php echo htmlspecialchars($product['title']); ?>">
                         </a>
                         <div class="product-card-body">
                             <h5 class="product-title">
-                                <a href="product.php?id=<?php echo $product['id']; ?>">
+                                <a href="product-new.php?id=<?php echo $product['id']; ?>">
                                     <?php echo htmlspecialchars(substr($product['title'], 0, 30)); ?>
                                     <?php if (strlen($product['title']) > 30) echo '...'; ?>
                                 </a>
                             </h5>
                             <p class="product-price">₹<?php echo number_format($product['price'], 2); ?></p>
-                            <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-order-now">Order Now</a>
+                            <a href="product-new.php?id=<?php echo $product['id']; ?>" class="btn btn-order-now">Order Now</a>
                         </div>
                     </div>
                 </div>
                 <?php endwhile; ?>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="products-new.php" class="btn btn-outline-primary btn-lg">View All Products</a>
             </div>
         </div>
     </section>
@@ -116,6 +181,18 @@ include 'includes/header.php';
                         <i class="fas fa-print"></i>
                     </div>
                     <h5>Printing</h5>
+                </div>
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h5>Laptops</h5>
+                </div>
+                <div class="category-card">
+                    <div class="icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5>Mobile Covers</h5>
                 </div>
             </div>
         </div>
@@ -231,7 +308,7 @@ include 'includes/header.php';
         <div class="container text-center">
             <h2 class="text-white">Ready to Start Your Project?</h2>
             <p class="lead text-white-50">Let's create a solution that fits your needs and budget.</p>
-            <a href="quote.php" class="btn btn-accent btn-lg mt-4">Get a Quote</a>
+            <a href="quote-new.php" class="btn btn-accent btn-lg mt-4">Get a Quote</a>
         </div>
     </section>
 </main>
