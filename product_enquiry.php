@@ -1,7 +1,8 @@
 <?php
 // product_enquiry.php - adds product to session enquiry "cart"
-
 session_start();
+
+
 require 'connection/db.php';
 
 // Validate request

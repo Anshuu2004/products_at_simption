@@ -1,6 +1,5 @@
 <?php 
 require 'connection/db.php';
-session_start();
 
 $code = $_GET['code'] ?? '';
 

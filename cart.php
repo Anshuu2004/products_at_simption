@@ -1,9 +1,5 @@
 <?php 
-include 'includes/header.php'; 
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+include 'includes/header.php';
 
 // Handle remove single item
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_id'])) {

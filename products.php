@@ -7,7 +7,7 @@ while($p = $stmt->fetch()):
 ?>
   <div class="col-md-4 mb-3">
     <div class="card">
-      <img src="<?=htmlspecialchars($p['image_path']?:'/images/products/sample_card.jpg')?>" class="card-img-top" alt="<?=htmlspecialchars($p['title'])?>">
+      <img src="<?=htmlspecialchars($p['image_path']?:'/images/products/sample_card.jpg')?>" class="card-img-top" loading="lazy" alt="<?=htmlspecialchars($p['title'])?>">
       <div class="card-body">
         <h5 class="card-title"><?=htmlspecialchars($p['title'])?></h5>
         <p class="card-text"><?=htmlspecialchars(substr($p['description'],0,120))?></p>

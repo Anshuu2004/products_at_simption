@@ -1,7 +1,7 @@
 <?php 
-require 'connection/db.php'; 
-require 'includes/mailer_config.php'; 
 session_start();
+require 'connection/db.php'; 
+require 'includes/mailer_config.php';
 
 $error = '';
 $success = '';

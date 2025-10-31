@@ -1,6 +1,5 @@
 <?php
 require '../connection/db.php';
-session_start();
 
 // Security check for admin users
 if (!isset($_SESSION['admin_user'])) {

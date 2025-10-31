@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle floating chat bubble click
     const floatingChat = document.querySelector('.floating-chat');
     if (floatingChat) {
+        const contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
         floatingChat.addEventListener('click', function() {
-            alert('Chat support will be implemented here!');
+            contactModal.show();
         });
     }
 

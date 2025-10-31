@@ -29,13 +29,13 @@ function sendVerificationEmail(string $toEmail, string $verifyCode): bool
         
         // 3. Replace with your actual credentials
         $mail->Username   = 'coc75644@gmail.com';  // Your full Gmail address
-        $mail->Password   = 'nxgo vfln iesd mgva'; // Your 16-character App Password
+        $mail->Password   = 'duxz nqwc lpyl yjqs'; // Your 16-character App Password
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // More secure option
         $mail->Port       = 465;                        // Port for SMTPS
 
         // --- Recipients ---
-        $mail->setFrom('no-reply@simption.com', 'Simption Tech'); // A professional "From" address
+        $mail->setFrom('coc75644@gmail.com', 'Simption Tech'); // Changed to match Username
         $mail->addAddress($toEmail);
 
         // --- Content ---

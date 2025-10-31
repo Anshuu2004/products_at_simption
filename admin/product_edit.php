@@ -1,6 +1,5 @@
 <?php
 require '../connection/db.php';
-session_start();
 
 // SECURITY: Restrict access to admins only
 if (!isset($_SESSION['admin_user'])) {

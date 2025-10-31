@@ -1,25 +1,81 @@
 <?php 
 require 'connection/db.php'; 
-include 'includes/header.php'; 
 
-// 1. Get the product ID from the URL and validate it
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-if (!$id) {
-    // If no valid ID, redirect to the homepage
+// Fetch categories for mapping URL parameters to category_ids
+$categories = [];
+$stmt = $pdo->query("SELECT id, slug FROM categories");
+while ($row = $stmt->fetch()) {
+    $categories[$row['slug']] = $row['id'];
+}
+
+$productId = null;
+$productCategoryId = null;
+$paramFound = false;
+$debugParamName = '';
+$debugParamValue = '';
+
+// 1. Check for 'id' parameter (primary product ID)
+if (isset($_GET['id'])) {
+    $productId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    if ($productId) {
+        $paramFound = true;
+        $debugParamName = 'id';
+        $debugParamValue = $productId;
+    }
+} 
+// 2. Check for category-specific parameters
+else {
+    $paramMap = [
+        'attendance' => $categories['attendance'] ?? null,
+        'lanyard'    => $categories['lanyard'] ?? null,
+        'badge'      => $categories['badge'] ?? null,
+        'erp'        => $categories['erp'] ?? null,
+    ];
+
+    foreach ($paramMap as $paramName => $categoryId) {
+        if (isset($_GET[$paramName]) && $categoryId !== null) {
+            $productId = filter_input(INPUT_GET, $paramName, FILTER_VALIDATE_INT);
+            if ($productId) {
+                $productCategoryId = $categoryId;
+                $paramFound = true;
+                $debugParamName = $paramName;
+                $debugParamValue = $productId;
+                break;
+            }
+        }
+    }
+}
+
+// If no valid parameter was found, redirect to homepage
+if (!$paramFound) {
+    error_log("Redirecting from product.php: No valid parameter found. Detected Param Name: {$debugParamName}, Value: {$debugParamValue}");
     header("Location: index.php");
     exit;
 }
 
-// 2. Fetch the product from the database
-$stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
-$stmt->execute([$id]);
+// 3. Construct the database query dynamically
+$sql = "SELECT * FROM products WHERE id = ?";
+$params = [$productId];
+
+if ($productCategoryId !== null) {
+    $sql .= " AND category_id = ?";
+    $params[] = $productCategoryId;
+}
+
+error_log("product.php Debug: SQL Query: {$sql}, Params: " . implode(', ', $params));
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 $product = $stmt->fetch();
 
-// 3. If no product is found with that ID, redirect
+// 4. If no product is found with that ID (and category_id if applicable), redirect
 if (!$product) {
+    error_log("Redirecting from product.php: Product not found for ID: {$productId} and Category ID: {$productCategoryId}");
     header("Location: index.php");
     exit;
 }
+
+include 'includes/header.php'; 
 ?>
 
 <main>
@@ -49,6 +105,7 @@ if (!$product) {
                 <a href="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>" class="zoom-link">
                     <img src="<?php echo htmlspecialchars($image_path); ?>" 
                         class="main-product-image" 
+                        loading="lazy"
                         data-zoom="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>"
                         alt="<?php echo htmlspecialchars($product['title']); ?>">
                 </a>

@@ -1,7 +1,8 @@
 <?php
 // logout.php - destroy session and redirect to homepage
-
 session_start();
+
+
 
 // Clear all session variables
 $_SESSION = [];

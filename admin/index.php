@@ -1,6 +1,5 @@
 <?php
 // Always start the session and include the database connection first.
-session_start();
 require '../connection/db.php';
 
 // SECURITY CHECK: Redirect to login page if the user is not a logged-in admin.
@@ -14,11 +13,21 @@ if (!isset($_SESSION['admin_user'])) {
 // --- FETCH DASHBOARD STATS ---
 // We use a try-catch block as a safeguard in case a table doesn't exist.
 try {
-    $totalProducts = $pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
-    $totalClients = $pdo->query("SELECT COUNT(*) FROM clients")->fetchColumn();
-    $totalMessages = $pdo->query("SELECT COUNT(*) FROM contact_messages")->fetchColumn();
-    $totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE is_admin = 0")->fetchColumn(); // Counting non-admin users
-    $totalQuotes = $pdo->query("SELECT COUNT(*) FROM quote_requests")->fetchColumn();
+    $stmt = $pdo->query("
+        SELECT
+            (SELECT COUNT(*) FROM products) AS totalProducts,
+            (SELECT COUNT(*) FROM clients) AS totalClients,
+            (SELECT COUNT(*) FROM contact_messages) AS totalMessages,
+            (SELECT COUNT(*) FROM users WHERE is_admin = 0) AS totalUsers,
+            (SELECT COUNT(*) FROM quote_requests) AS totalQuotes
+    ");
+    $stats = $stmt->fetch();
+
+    $totalProducts = $stats['totalProducts'] ?? 0;
+    $totalClients = $stats['totalClients'] ?? 0;
+    $totalMessages = $stats['totalMessages'] ?? 0;
+    $totalUsers = $stats['totalUsers'] ?? 0;
+    $totalQuotes = $stats['totalQuotes'] ?? 0;
 } catch (PDOException $e) {
     // If there's a database error (e.g., table not found), set counts to 0 to avoid crashing the page.
     $totalProducts = $totalClients = $totalMessages = $totalUsers = "Error";

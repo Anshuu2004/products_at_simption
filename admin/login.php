@@ -1,6 +1,6 @@
 <?php
 // Always start the session at the very top
-session_start();
+
 
 // If the admin is already logged in, redirect them to the dashboard
 if (isset($_SESSION['admin_user'])) {

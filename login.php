@@ -1,6 +1,6 @@
 <?php 
-require 'connection/db.php'; 
 session_start();
+require 'connection/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);

@@ -87,6 +87,7 @@ include 'includes/header.php';
                         <a href="product.php?id=<?php echo $product['id']; ?>">
                             <img src="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>" 
                                  class="product-card-img" 
+                                 loading="lazy"
                                  alt="<?php echo htmlspecialchars($product['title']); ?>">
                         </a>
                         <div class="product-card-body">

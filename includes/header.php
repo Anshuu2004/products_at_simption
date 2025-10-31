@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../connection/db.php'; 
 ?>
 
@@ -25,7 +28,13 @@ require_once __DIR__ . '/../connection/db.php';
                 <i class="fas fa-headset me-1"></i> Happy to help: +91  9074822542
             </div>
             <div>
-                <a href="login.php" class="text-decoration-none text-dark me-3"><i class="fas fa-user me-1"></i> Login / Register</a>
+                <?php if (isset($_SESSION['user'])): ?>
+                    <span class="small me-3">Welcome, <?php echo htmlspecialchars($_SESSION['user']['name']); ?></span>
+                    <a href="profile.php" class="text-decoration-none text-dark me-3"><i class="fas fa-user me-1"></i> Profile</a>
+                    <a href="logout.php" class="text-decoration-none text-dark"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
+                <?php else: ?>
+                    <a href="login.php" class="text-decoration-none text-dark me-3"><i class="fas fa-user me-1"></i> Login / Register</a>
+                <?php endif; ?>
                 <a href="cart.php" class="text-decoration-none text-dark"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
             </div>
         </div>
@@ -71,29 +80,29 @@ require_once __DIR__ . '/../connection/db.php';
                                     <div class="mega-menu-links">
                                         <!-- ID Cards -->
                                         <a href="product.php?id=2" data-image="assets/images/menu-featured/pvc-card.jpg">PVC Card</a>
-                                        <a href="product.php?id=3" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
-                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
+                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
+                                        <a href="product.php?id=5" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
                                         <a href="product.php?id=1" data-image="assets/images/menu-featured/rfid-card.jpg">RFID-Card</a>
 
                                         <!-- Attendance Devices -->
-                                        <a href="product.php?attendance=1" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
-                                        <a href="product.php?attendance=2" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
-                                        <a href="product.php?attendance=3" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
-                                        <a href="product.php?attendance=4" data-image="assets/images/attendance/att_face.png">Face ID Attendance Machine</a>
-                                        <a href="product.php?attendance=5" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
-                                        <a href="product.php?attendance=6" data-image="assets/images/attendance/att_barcode.png">Barcode Scanner</a>
+                                        <a href="product.php?attendance=11" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
+                                        <a href="product.php?attendance=13" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
+                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
+                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face ID Attendance Machine</a>
+                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
+                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_barcode.png">Barcode Scanner</a>
 
                                         <!-- Lanyards -->
-                                        <a href="product.php?lanyard=1">Polyester Lanyards</a>
-                                        <a href="product.php?lanyard=2">Nylon Lanyards</a>
+                                        <a href="product.php?lanyard=3">Polyester Lanyards</a>
+                                        <a href="product.php?lanyard=3">Nylon Lanyards</a>
                                         <a href="product.php?lanyard=3">Lanyard Prints</a>
-                                        <a href="product.php?lanyard=4">Customized Lanyards</a>
+                                        <a href="product.php?lanyard=3">Customized Lanyards</a>
 
                                         <!-- Badges -->
-                                        <a href="product.php?badge=1">Metal Badges</a>
-                                        <a href="product.php?badge=2">Plastic Badges</a>
-                                        <a href="product.php?badge=3">Clip Badges</a>
-                                        <a href="product.php?badge=4">Magnetic Badges</a>
+                                        <a href="product.php?badge=6">Metal Badges</a>
+                                        <a href="product.php?badge=5">Plastic Badges</a>
+                                        <a href="product.php?badge=5">Clip Badges</a>
+                                        <a href="product.php?badge=5">Magnetic Badges</a>
 
                                         <!-- ERP & Software -->
                                         <a href="product.php?erp=1">School Management Software</a>
@@ -122,8 +131,8 @@ require_once __DIR__ . '/../connection/db.php';
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
                                         <a href="product.php?id=2" data-image="assets/images/menu-featured/pvc-card.jpg">PVC Card</a>
-                                        <a href="product.php?id=3" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
-                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
+                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
+                                        <a href="product.php?id=5" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
                                         <a href="product.php?id=1" data-image="assets/images/menu-featured/rfid-card.jpg">RFID-Card</a>
                                     </div>
                                 </div>
@@ -143,12 +152,12 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?attendance=1" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
-                                        <a href="product.php?attendance=2" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
-                                        <a href="product.php?attendance=3" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
-                                        <a href="product.php?attendance=4" data-image="assets/images/attendance/att_face.png">Face ID Attendance Machine</a>
-                                        <a href="product.php?attendance=5" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
-                                        <a href="product.php?attendance=6" data-image="assets/images/attendance/att_barcode.png">Barcode Scanner</a>
+                                        <a href="product.php?attendance=11" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
+                                        <a href="product.php?attendance=13" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
+                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
+                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face ID Attendance Machine</a>
+                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
+                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_barcode.png">Barcode Scanner</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
@@ -167,10 +176,10 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?lanyard=1">Polyester Lanyards</a>
-                                        <a href="product.php?lanyard=2">Nylon Lanyards</a>
-                                        <a href="product.php?lanyard=3">Lanyard Prints</a>
-                                        <a href="product.php?lanyard=4">Customized Lanyards</a>
+                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Polyester Lanyards</a>
+                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Nylon Lanyards</a>
+                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Lanyard Prints</a>
+                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Customized Lanyards</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
@@ -189,10 +198,10 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?badge=1">Metal Badges</a>
-                                        <a href="product.php?badge=2">Plastic Badges</a>
-                                        <a href="product.php?badge=3">Clip Badges</a>
-                                        <a href="product.php?badge=4">Magnetic Badges</a>
+                                        <a href="product.php?badge=6" data-image="assets/images/badge_metal.png">Metal Badges</a>
+                                        <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Plastic Badges</a>
+                                        <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Clip Badges</a>
+                                        <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Magnetic Badges</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
@@ -211,13 +220,13 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?erp=1">School Management Software</a>
-                                        <a href="product.php?erp=2">Attendance Management Systems</a>
-                                        <a href="product.php?erp=3">Website Development Services</a>
-                                        <a href="product.php?erp=4">Android App Development</a>
-                                        <a href="product.php?erp=5">Communication Services</a>
-                                        <a href="product.php?erp=6">Bus Tracking System</a>
-                                        <a href="product.php?erp=7">Online Learning Solutions</a>
+                                        <a href="erp_module_detail.php?id=1">School Management Software</a>
+                                        <a href="erp_module_detail.php?id=2">Attendance Management Systems</a>
+                                        <a href="erp_module_detail.php?id=3">Website Development Services</a>
+                                        <a href="erp_module_detail.php?id=4">Android App Development</a>
+                                        <a href="erp_module_detail.php?id=5">Communication Services</a>
+                                        <a href="erp_module_detail.php?id=6">Bus Tracking System</a>
+                                        <a href="erp_module_detail.php?id=7">Online Learning Solutions</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
