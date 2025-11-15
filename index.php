@@ -84,6 +84,11 @@ include 'includes/header.php';
                 ?>
                 <div class="col-lg-3 col-md-6">
                     <div class="product-card">
+                        <?php if ($product['id'] <= 2): ?>
+                        <span class="product-badge">NEW</span>
+                        <?php elseif ($product['id'] == 5): ?>
+                        <span class="product-badge">FEATURED</span>
+                        <?php endif; ?>
                         <a href="product.php?id=<?php echo $product['id']; ?>">
                             <img src="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>" 
                                  class="product-card-img" 
@@ -98,7 +103,7 @@ include 'includes/header.php';
                                 </a>
                             </h5>
                             <p class="product-price">₹<?php echo number_format($product['price'], 2); ?></p>
-                            <a href="product.php?id=<?php echo $product['id']; ?>" class="btn btn-primary">Order Now</a>
+                            <a href="product.php?id=<?php echo $product['id']; ?>" class="btn">Order Now</a>
                         </div>
                     </div>
                 </div>

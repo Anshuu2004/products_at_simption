@@ -140,60 +140,34 @@ include 'includes/header.php';
             </div>
 
             <div class="category-scroll-container">
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-mug-hot"></i>
-                    </div>
-                    <h5>Drinkware</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h5>T-Shirts</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h5>Notebooks</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-id-card"></i>
-                    </div>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-id-card"></i></div>
                     <h5>ID Cards</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-tags"></i>
-                    </div>
+                </a>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-mug-hot"></i></div>
+                    <h5>Drinkware</h5>
+                </a>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-tshirt"></i></div>
+                    <h5>T-Shirts</h5>
+                </a>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-book"></i></div>
+                    <h5>Notebooks</h5>
+                </a>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-tags"></i></div>
                     <h5>Stickers</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
+                </a>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-gift"></i></div>
                     <h5>Gifts</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-print"></i>
-                    </div>
-                    <h5>Printing</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h5>Laptops</h5>
-                </div>
-                <div class="category-card">
-                    <div class="icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h5>Mobile Covers</h5>
-                </div>
+                </a>
+                <a href="products-new.php" class="category-card text-decoration-none">
+                    <div class="icon"><i class="fas fa-toolbox"></i></div>
+                    <h5>Accessories</h5>
+                </a>
             </div>
         </div>
     </section>

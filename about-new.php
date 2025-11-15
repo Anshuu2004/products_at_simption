@@ -172,7 +172,7 @@ include 'includes/header.php';
                     <div class="card text-center">
                         <img src="assets/images/general/team-member.jpg" class="card-img-top" alt="Team Member">
                         <div class="card-body">
-                            <h5>John Doe</h5>
+                            <h5>Mr. Sagar Sharma</h5>
                             <p class="text-muted">CEO & Founder</p>
                         </div>
                     </div>
@@ -181,7 +181,7 @@ include 'includes/header.php';
                     <div class="card text-center">
                         <img src="assets/images/general/team-member.jpg" class="card-img-top" alt="Team Member">
                         <div class="card-body">
-                            <h5>Jane Smith</h5>
+                            <h5>Ms. Priya Verma</h5>
                             <p class="text-muted">CTO</p>
                         </div>
                     </div>
@@ -190,7 +190,7 @@ include 'includes/header.php';
                     <div class="card text-center">
                         <img src="assets/images/general/team-member.jpg" class="card-img-top" alt="Team Member">
                         <div class="card-body">
-                            <h5>Robert Johnson</h5>
+                            <h5>Mr. Rohan Gupta</h5>
                             <p class="text-muted">Operations Head</p>
                         </div>
                     </div>
@@ -199,7 +199,7 @@ include 'includes/header.php';
                     <div class="card text-center">
                         <img src="assets/images/general/team-member.jpg" class="card-img-top" alt="Team Member">
                         <div class="card-body">
-                            <h5>Sarah Williams</h5>
+                            <h5>Ms. Anjali Mehta</h5>
                             <p class="text-muted">Sales Director</p>
                         </div>
                     </div>

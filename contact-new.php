@@ -27,7 +27,7 @@ include 'includes/header.php';
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5>Our Location</h5>
-                                    <p>123 Business Avenue, Mumbai, Maharashtra 400001</p>
+                                    <p>Simption Tech Pvt Ltd, B-32, IT Park Bhopal (M.P.) India</p>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@ include 'includes/header.php';
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5>Phone Number</h5>
-                                    <p>+91 12345 67890</p>
+                                    <p>+91 9074822542</p>
                                 </div>
                             </div>
                         </div>

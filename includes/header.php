@@ -13,7 +13,11 @@ require_once __DIR__ . '/../connection/db.php';
     <title>Simption Tech - Creative ID & Attendance Solutions</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- System font stack in CSS; removing Google Fonts for performance -->
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/drift-zoom/dist/drift-basic.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -42,7 +46,7 @@ require_once __DIR__ . '/../connection/db.php';
 </div>
 
 <!-- Main Header -->
-<header class="bg-white shadow-sm sticky-top">
+<header class="bg-white shadow-sm sticky-top" id="mainHeader">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <!-- Logo -->
@@ -52,10 +56,10 @@ require_once __DIR__ . '/../connection/db.php';
 
             <!-- Search Bar -->
             <div class="mx-auto d-none d-lg-block" style="width: 20%;">
-                <div class="input-group">
-                    <input type="text" class="form-control search-bar" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
-                </div>
+                <form action="search.php" method="GET" class="input-group">
+                    <input type="text" name="query" class="form-control search-bar" placeholder="Search..." aria-label="Search" value="<?php echo isset($_GET['query']) ? htmlspecialchars($_GET['query']) : ''; ?>">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                </form>
             </div>
 
             <!-- Right Side Buttons -->
@@ -76,45 +80,47 @@ require_once __DIR__ . '/../connection/db.php';
                         <a class="nav-link dropdown-toggle" href="#" id="allProductsDropdown" role="button">All Products</a>
                         <div class="dropdown-menu mega-menu" aria-labelledby="allProductsDropdown">
                             <div class="row">
-                                <div class="col-md-7">
-                                    <div class="mega-menu-links">
-                                        <!-- ID Cards -->
-                                        <a href="product.php?id=2" data-image="assets/images/menu-featured/pvc-card.jpg">PVC Card</a>
-                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
-                                        <a href="product.php?id=5" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
-                                        <a href="product.php?id=1" data-image="assets/images/menu-featured/rfid-card.jpg">RFID-Card</a>
-
-                                        <!-- Attendance Devices -->
-                                        <a href="product.php?attendance=11" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
-                                        <a href="product.php?attendance=13" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
-                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
-                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face ID Attendance Machine</a>
-                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
-                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_barcode.png">Barcode Scanner</a>
-
-                                        <!-- Lanyards -->
-                                        <a href="product.php?lanyard=3">Polyester Lanyards</a>
-                                        <a href="product.php?lanyard=3">Nylon Lanyards</a>
-                                        <a href="product.php?lanyard=3">Lanyard Prints</a>
-                                        <a href="product.php?lanyard=3">Customized Lanyards</a>
-
-                                        <!-- Badges -->
-                                        <a href="product.php?badge=6">Metal Badges</a>
-                                        <a href="product.php?badge=5">Plastic Badges</a>
-                                        <a href="product.php?badge=5">Clip Badges</a>
-                                        <a href="product.php?badge=5">Magnetic Badges</a>
-
-                                        <!-- ERP & Software -->
-                                        <a href="product.php?erp=1">School Management Software</a>
-                                        <a href="product.php?erp=2">Attendance Management Systems</a>
-                                        <a href="product.php?erp=3">Website Development Services</a>
-                                        <a href="product.php?erp=4">Android App Development</a>
-                                        <a href="product.php?erp=5">Communication Services</a>
-                                        <a href="product.php?erp=6">Bus Tracking System</a>
-                                        <a href="product.php?erp=7">Online Learning Solutions</a>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="mega-menu-links">
+                                                <h5>ID Cards</h5>
+                                                <a href="product.php?id=2" data-image="assets/images/menu-featured/pvc-card.jpg">PVC Card</a>
+                                                <a href="product.php?id=4" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
+                                                <a href="product.php?id=5" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
+                                                <a href="product.php?id=1" data-image="assets/images/menu-featured/rfid-card.jpg">RFID-Card</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mega-menu-links">
+                                                <h5>Attendance</h5>
+                                                <a href="product.php?attendance=11" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
+                                                <a href="product.php?attendance=13" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
+                                                <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
+                                                <a href="product.php?attendance=14" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mega-menu-links">
+                                                <h5>Lanyards</h5>
+                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Polyester Lanyards</a>
+                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Nylon Lanyards</a>
+                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Lanyard Prints</a>
+                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Customized Lanyards</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mega-menu-links">
+                                                <h5>Badges</h5>
+                                                <a href="product.php?badge=6" data-image="assets/images/badge_metal.png">Metal Badges</a>
+                                                <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Plastic Badges</a>
+                                                <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Clip Badges</a>
+                                                <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Magnetic Badges</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <div class="mega-menu-image">
                                         <img src="assets/images/menu-featured/id-cards-promo.jpg" class="mega-menu-preview-image" alt="Featured Products">
                                     </div>
@@ -245,3 +251,15 @@ require_once __DIR__ . '/../connection/db.php';
         </div>
     </nav>
 </header>
+
+<script>
+// Add scrolled class to header when scrolling
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('mainHeader');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+</script>

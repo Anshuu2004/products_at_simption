@@ -35,25 +35,34 @@
             <div class="col-lg-3 col-md-6">
                 <h5>Contact Us</h5>
                 <ul class="list-unstyled footer-contact">
-                    <li><i class="fas fa-map-marker-alt"></i> Your Company Address, City</li>
-                    <li><i class="fas fa-phone"></i> +91 12345 67890</li>
-                    <li><i class="fas fa-envelope"></i> info@simption.com</li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Simption Tech Pvt Ltd, B-32, IT Park Bhopal (M.P.) India</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9074822542</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>info@simption.com</span>
+                    </li>
                 </ul>
             </div>
 
             <div class="col-lg-2 col-md-6">
                 <h5>Follow Us</h5>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/simption/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/simptionbhopal/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/simptiontechpvtltd/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 text-center pt-4 mt-4 border-top border-secondary-subtle">
+        <div class="row footer-bottom">
+            <div class="col-12 text-center">
                 <p>&copy; <?php echo date('Y'); ?> Simption Tech. All Rights Reserved.</p>
             </div>
         </div>
@@ -95,7 +104,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/drift-zoom/dist/Drift.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.min.js"></script>
 
 </body>
 </html>

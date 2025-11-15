@@ -44,7 +44,7 @@ $enquiryList = $_SESSION['enquiry'] ?? [];
                         <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
                             <h5>Our Office</h5>
-                            <p>Your Company Address, Bhopal, Madhya Pradesh</p>
+                            <p>Simption Tech Pvt Ltd, B-32, IT Park Bhopal (M.P.) India</p>
                         </div>
                     </div>
                     
@@ -60,7 +60,7 @@ $enquiryList = $_SESSION['enquiry'] ?? [];
                         <div class="icon"><i class="fas fa-phone"></i></div>
                         <div>
                             <h5>Call Us</h5>
-                            <p><a href="tel:+911234567890">+91 12345 67890</a></p>
+                            <p><a href="tel:+919074822542">+91 9074822542</a></p>
                         </div>
                     </div>
                 </div>
