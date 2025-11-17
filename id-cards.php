@@ -21,18 +21,16 @@ include 'includes/header.php';
 
             <div class="row g-4">
                 <?php
-                // Fetch all products that belong to the 'ID Card' category.
-                // NOTE: We assume the category_id for 'ID Card' is 1. 
-                // You can verify this in your `categories` table in phpMyAdmin.
-                $stmt = $pdo->prepare("SELECT * FROM products WHERE category_id = ? ORDER BY title ASC");
-                $stmt->execute([1]);
-                $products = $stmt->fetchAll();
+                // Fetch all ID card products from the 'ID Cards' category
+                $stmt = $pdo->prepare("SELECT p.* FROM products p JOIN categories c ON p.category_id = c.id WHERE c.slug = 'id-cards' ORDER BY p.title ASC");
+                $stmt->execute();
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 if (empty($products)) {
                     echo "<div class='col-12'><p class='text-center'>No ID card products found.</p></div>";
                 } else {
                     foreach ($products as $product):
-                        $image_path = 'assets/images/products/' . ($product['image'] ?? 'placeholder.png');
+                        $image_path = 'assets/images/products/id-cards/' . ($product['image'] ?? 'placeholder.png');
                 ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product-card">

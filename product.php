@@ -57,20 +57,19 @@ if (!$paramFound) {
 $sql = "SELECT * FROM products WHERE id = ?";
 $params = [$productId];
 
+// For category-specific parameters, check category_id OR NULL (for products without category)
 if ($productCategoryId !== null) {
-    $sql .= " AND category_id = ?";
+    // For lanyard/badge products, they might have NULL category_id, so check both
+    $sql .= " AND (category_id = ? OR category_id IS NULL)";
     $params[] = $productCategoryId;
 }
-
-error_log("product.php Debug: SQL Query: {$sql}, Params: " . implode(', ', $params));
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $product = $stmt->fetch();
 
-// 4. If no product is found with that ID (and category_id if applicable), redirect
+// 4. If no product is found with that ID, redirect
 if (!$product) {
-    error_log("Redirecting from product.php: Product not found for ID: {$productId} and Category ID: {$productCategoryId}");
     header("Location: index.php");
     exit;
 }
@@ -95,28 +94,58 @@ include 'includes/header.php';
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6">
-            <div class="product-image-gallery">
-                <?php 
-                    $image_path = 'assets/images/products/' . ($product['image'] ?? 'placeholder.png'); 
-                    // For the zoom to work best, you should have a larger version of the image.
-                    // For now, we'll use the same image for both.
-                    $large_image_path = $image_path; 
-                ?>
-                <a href="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>" class="zoom-link">
-                    <img src="<?php echo htmlspecialchars($image_path); ?>" 
-                        class="main-product-image" 
-                        loading="lazy"
-                        data-zoom="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>"
-                        alt="<?php echo htmlspecialchars($product['title']); ?>">
-                </a>
-            </div>
-            <div class="zoom-pane"></div>
-        </div>
+                    <div class="product-image-gallery">
+                        <?php
+                            $image_path = 'assets/images/products/placeholder.png'; // Default image
+                            $category_folder = '';
+
+                            if ($product['category_id'] == 5) { // This is the 'ID Cards' category
+                                $category_folder = 'id-cards';
+                            } else if ($product['category_id'] == 1) {
+                                $category_folder = 'attendance';
+                            } else if ($product['category_id'] == 2) {
+                                $category_folder = 'lanyards';
+                            } else if ($product['category_id'] == 3) {
+                                $category_folder = 'badges';
+                            } else if ($product['category_id'] == 4) {
+                                $category_folder = 'erp';
+                            }
+
+                            if (!empty($category_folder) && !empty($product['image'])) {
+                                $image_path = "assets/images/products/{$category_folder}/" . $product['image'];
+                            }
+                            
+                            // For the zoom to work best, you should have a larger version of the image.
+                            // For now, we'll use the same image for both.
+                            $large_image_path = $image_path; 
+                        ?>
+                        <a href="<?php echo htmlspecialchars($image_path); ?>" class="zoom-link">
+                            <img src="<?php echo htmlspecialchars($image_path); ?>" 
+                                class="main-product-image" 
+                                loading="lazy"
+                                data-zoom="<?php echo htmlspecialchars($image_path); ?>"
+                                alt="<?php echo htmlspecialchars($product['title']); ?>">
+                        </a>
+                    </div>
+                    <div class="zoom-pane"></div>
+                </div>
 
                 <div class="col-lg-6">
                     <h1 class="product-page-title"><?php echo htmlspecialchars($product['title']); ?></h1>
                     <p class="product-page-price">₹<?php echo number_format($product['price'], 2); ?></p>
-                    <p class="lead"><?php echo htmlspecialchars($product['description']); ?></p>
+                    <?php
+                    // Display only the description part, not the specifications
+                    $full_description = $product['description'];
+                    if (strpos($full_description, 'Specifications:') !== false) {
+                        // Extract only the description part before "Specifications:"
+                        $parts = explode('Specifications:', $full_description, 2);
+                        $description_only = trim($parts[0]);
+                        echo '<p class="lead">' . htmlspecialchars($description_only) . '</p>';
+                    } else {
+                        // If no specifications section, display the full description
+                        echo '<p class="lead">' . htmlspecialchars($full_description) . '</p>';
+                    }
+                    ?>
 
                     <hr class="my-4">
 
@@ -144,10 +173,48 @@ include 'includes/header.php';
                     </ul>
                     <div class="tab-content p-4 border border-top-0">
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
-                            <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+                            <?php
+                            // Display only the description part, not the specifications
+                            $full_description = $product['description'];
+                            if (strpos($full_description, 'Specifications:') !== false) {
+                                // Extract only the description part before "Specifications:"
+                                $parts = explode('Specifications:', $full_description, 2);
+                                $description_only = trim($parts[0]);
+                                echo '<p>' . nl2br(htmlspecialchars($description_only)) . '</p>';
+                            } else {
+                                // If no specifications section, display the full description
+                                echo '<p>' . nl2br(htmlspecialchars($full_description)) . '</p>';
+                            }
+                            ?>
                         </div>
                         <div class="tab-pane fade" id="specs" role="tabpanel">
-                            <p>Detailed specifications for <?php echo htmlspecialchars($product['title']); ?> will be listed here.</p>
+                            <?php
+                            // Extract specifications from the description
+                            $full_description = $product['description'];
+                            $specs_content = '';
+                            
+                            // Check if description contains specifications
+                            if (strpos($full_description, 'Specifications:') !== false) {
+                                // Split the description at "Specifications:"
+                                $parts = explode('Specifications:', $full_description, 2);
+                                if (count($parts) == 2) {
+                                    // Get the specifications part and format it as a list
+                                    $specs_text = trim($parts[1]);
+                                    $specs_lines = explode("\n", $specs_text);
+                                    
+                                    echo '<ul class="list-unstyled">';
+                                    foreach ($specs_lines as $line) {
+                                        $line = trim($line);
+                                        if (!empty($line) && $line[0] == '-') {
+                                            echo '<li>' . htmlspecialchars($line) . '</li>';
+                                        }
+                                    }
+                                    echo '</ul>';
+                                }
+                            } else {
+                                echo '<p>Detailed specifications for ' . htmlspecialchars($product['title']) . ' will be listed here.</p>';
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

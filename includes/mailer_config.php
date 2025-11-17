@@ -66,3 +66,36 @@ function sendVerificationEmail(string $toEmail, string $verifyCode): bool
         return false;
     }
 }
+
+/**
+ * Get a configured PHPMailer instance for sending emails
+ * Returns a PHPMailer object with SMTP settings configured, or null on error
+ * 
+ * @return PHPMailer|null
+ */
+function getMailer(): ?PHPMailer
+{
+    try {
+        $mail = new PHPMailer(true); // Enable exceptions
+        
+        // Server settings for Gmail (same as sendVerificationEmail)
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'coc75644@gmail.com';  // Gmail address
+        $mail->Password   = 'duxz nqwc lpyl yjqs'; // App Password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = 465;
+        
+        // Set default from address
+        $mail->setFrom('coc75644@gmail.com', 'Simption Tech');
+        
+        // Enable HTML by default
+        $mail->isHTML(true);
+        
+        return $mail;
+    } catch (Exception $e) {
+        error_log("Mailer Error: Failed to initialize PHPMailer. " . $e->getMessage());
+        return null;
+    }
+}

@@ -11,7 +11,7 @@ include 'includes/header.php';
     <?php 
     $stmt = $pdo->query("SELECT * FROM clients ORDER BY created_at DESC"); 
     while ($c = $stmt->fetch()): 
-      $logo = 'assets/images/' . ($c['logo'] ?? 'client_placeholder.png'); 
+      $logo = 'assets/images/clients/' . ($c['logo'] ?? 'client_placeholder.png'); 
     ?>
       <div class="col-6 col-md-4 col-lg-3 text-center">
         <div class="card p-3">

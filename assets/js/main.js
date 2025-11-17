@@ -155,25 +155,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             linksContainers.forEach(function(linksContainer) {
                 linksContainer.querySelectorAll('a').forEach(function(link) {
-                    link.addEventListener('mouseenter', function() {
-                        const newImage = this.getAttribute('data-image');
-                        if (newImage) {
-                            previewImage.style.opacity = '0';
-                            setTimeout(() => {
-                                previewImage.src = newImage;
-                                previewImage.style.opacity = '1';
-                            }, 150);
-                        }
-                    });
+                    const newImage = this.getAttribute('data-image');
+                    if (newImage) {
+                        previewImage.src = newImage;
+                    }
                 });
 
                 // Reset to default image when leaving the links container
                 linksContainer.addEventListener('mouseleave', function() {
-                    previewImage.style.opacity = '0';
-                    setTimeout(() => {
-                        previewImage.src = defaultImage;
-                        previewImage.style.opacity = '1';
-                    }, 150);
+                    previewImage.src = defaultImage;
                 });
             });
         }

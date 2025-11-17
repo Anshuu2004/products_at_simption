@@ -21,13 +21,10 @@ include 'includes/header.php';
 
             <div class="row g-4">
                 <?php
-                // --- IMPORTANT ---
-                // Fetch all products that belong to the 'Lanyard' and 'Badge' categories.
-                // We assume the category_ids are 2 (Lanyard) and 3 (Badge).
-                // Please verify these IDs in your `categories` table in phpMyAdmin.
-                $stmt = $pdo->prepare("SELECT * FROM products WHERE category_id IN (2, 3) ORDER BY title ASC");
-                $stmt->execute();
-                $products = $stmt->fetchAll();
+                // Fetch all lanyard and badge products
+                // Include products with category_id = 2, 3 OR NULL with "Lanyard" or "Badge" in title
+                $stmt = $pdo->query("SELECT * FROM products WHERE category_id IN (2, 3) OR (category_id IS NULL AND (title LIKE '%Lanyard%' OR title LIKE '%lanyard%' OR title LIKE '%Badge%' OR title LIKE '%badge%')) ORDER BY title ASC");
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 if (empty($products)) {
                     echo "<div class='col-12'><p class='text-center'>No lanyard or badge products found.</p></div>";

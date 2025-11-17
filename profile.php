@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="page-header">
         <div class="container text-center">
             <h1 class="text-white">My Profile</h1>
-        }
+        </div>
     </section>
 
     <section class="section-padding">

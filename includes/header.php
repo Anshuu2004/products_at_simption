@@ -85,44 +85,44 @@ require_once __DIR__ . '/../connection/db.php';
                                         <div class="col-md-3">
                                             <div class="mega-menu-links">
                                                 <h5>ID Cards</h5>
-                                                <a href="product.php?id=2" data-image="assets/images/menu-featured/pvc-card.jpg">PVC Card</a>
-                                                <a href="product.php?id=4" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
-                                                <a href="product.php?id=5" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
-                                                <a href="product.php?id=1" data-image="assets/images/menu-featured/rfid-card.jpg">RFID-Card</a>
+                                                <a href="product.php?id=2" data-image="assets/images/menu-featured/id-cards/pvc-card.jpg">PVC Card</a>
+                                                <a href="product.php?id=4" data-image="assets/images/menu-featured/id-cards/pouch-card.jpg">Pouch Card</a>
+                                                <a href="product.php?id=5" data-image="assets/images/menu-featured/id-cards/uv-card.jpg">UV-Card</a>
+                                                <a href="product.php?id=1" data-image="assets/images/menu-featured/id-cards/rfid-card.jpg">RFID-Card</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="mega-menu-links">
                                                 <h5>Attendance</h5>
-                                                <a href="product.php?attendance=11" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
-                                                <a href="product.php?attendance=13" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
-                                                <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
-                                                <a href="product.php?attendance=14" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
+                                                <a href="product.php?attendance=11" data-image="assets/images/menu-featured/attendance/rfid-machine.jpg">RFID Machine</a>
+                                                <a href="product.php?attendance=13" data-image="assets/images/menu-featured/attendance/fingerprint-machine.jpg">Fingerprint Machine</a>
+                                                <a href="product.php?attendance=12" data-image="assets/images/menu-featured/attendance/face-scanner.jpg">Face Scanner</a>
+                                                <a href="product.php?attendance=14" data-image="assets/images/menu-featured/attendance/qr-scanner.jpg">QR Scanner</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="mega-menu-links">
                                                 <h5>Lanyards</h5>
-                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Polyester Lanyards</a>
-                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Nylon Lanyards</a>
-                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Lanyard Prints</a>
-                                                <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Customized Lanyards</a>
+                                                <a href="product.php?lanyard=3" data-image="assets/images/menu-featured/lanyards/polyester-lanyards.jpg">Polyester Lanyards</a>
+                                                <a href="product.php?lanyard=7" data-image="assets/images/menu-featured/lanyards/nylon-lanyards.jpg">Nylon Lanyards</a>
+                                                <a href="product.php?lanyard=8" data-image="assets/images/menu-featured/lanyards/lanyard-prints.jpg">Lanyard Prints</a>
+                                                <a href="product.php?lanyard=9" data-image="assets/images/menu-featured/lanyards/customized-lanyards.jpg">Customized Lanyards</a>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="mega-menu-links">
                                                 <h5>Badges</h5>
-                                                <a href="product.php?badge=6" data-image="assets/images/badge_metal.png">Metal Badges</a>
-                                                <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Plastic Badges</a>
-                                                <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Clip Badges</a>
-                                                <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Magnetic Badges</a>
+                                                <a href="product.php?badge=6" data-image="assets/images/menu-featured/badges/metal-badges.jpg">Metal Badges</a>
+                                                <a href="product.php?badge=5" data-image="assets/images/menu-featured/badges/plastic-badges.jpg">Plastic Badges</a>
+                                                <a href="product.php?badge=19" data-image="assets/images/menu-featured/badges/clip-badges.jpg">Clip Badges</a>
+                                                <a href="product.php?badge=20" data-image="assets/images/menu-featured/badges/magnetic-badges.jpg">Magnetic Badges</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mega-menu-image">
-                                        <img src="assets/images/menu-featured/id-cards-promo.jpg" class="mega-menu-preview-image" alt="Featured Products">
+                                        <img src="assets/images/menu-featured/attendance-promo.jpg" class="mega-menu-preview-image" alt="Featured Products">
                                     </div>
                                 </div>
                             </div>
@@ -136,15 +136,15 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?id=2" data-image="assets/images/menu-featured/pvc-card.jpg">PVC Card</a>
-                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/pouch-card.jpg">Pouch Card</a>
-                                        <a href="product.php?id=5" data-image="assets/images/menu-featured/uv-card.jpg">UV-Card</a>
-                                        <a href="product.php?id=1" data-image="assets/images/menu-featured/rfid-card.jpg">RFID-Card</a>
+                                        <a href="product.php?id=2" data-image="assets/images/menu-featured/id-cards/pvc-card.jpg">PVC Card</a>
+                                        <a href="product.php?id=4" data-image="assets/images/menu-featured/id-cards/pouch-card.jpg">Pouch Card</a>
+                                        <a href="product.php?id=5" data-image="assets/images/menu-featured/id-cards/uv-card.jpg">UV-Card</a>
+                                        <a href="product.php?id=1" data-image="assets/images/menu-featured/id-cards/rfid-card.jpg">RFID-Card</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="mega-menu-image">
-                                        <img src="assets/images/menu-featured/id-cards-promo.jpg" class="mega-menu-preview-image" alt="ID Card Products">
+                                        <img src="assets/images/menu-featured/id-cards/id-cards-promo.jpg" class="mega-menu-preview-image" alt="ID Card Products">
                                     </div>
                                 </div>
                             </div>
@@ -158,17 +158,17 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?attendance=11" data-image="assets/images/attendance/att_rfid.png">RFID Machine</a>
-                                        <a href="product.php?attendance=13" data-image="assets/images/attendance/att_fingerprint.png">Fingerprint Machine</a>
-                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face Scanner</a>
-                                        <a href="product.php?attendance=12" data-image="assets/images/attendance/att_face.png">Face ID Attendance Machine</a>
-                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_qr.png">QR Scanner</a>
-                                        <a href="product.php?attendance=14" data-image="assets/images/attendance/att_barcode.png">Barcode Scanner</a>
+                                        <a href="product.php?attendance=11" data-image="assets/images/menu-featured/attendance/rfid-machine.jpg">RFID Machine</a>
+                                        <a href="product.php?attendance=13" data-image="assets/images/menu-featured/attendance/fingerprint-machine.jpg">Fingerprint Machine</a>
+                                        <a href="product.php?attendance=12" data-image="assets/images/menu-featured/attendance/face-scanner.jpg">Face Scanner</a>
+                                        <a href="product.php?attendance=12" data-image="assets/images/menu-featured/attendance/face-id-attendance-machine.jpg">Face ID Attendance Machine</a>
+                                        <a href="product.php?attendance=14" data-image="assets/images/menu-featured/attendance/qr-scanner.jpg">QR Scanner</a>
+                                        <a href="product.php?attendance=14" data-image="assets/images/menu-featured/attendance/barcode-scanner.jpg">Barcode Scanner</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="mega-menu-image">
-                                        <img src="assets/images/menu-featured/attendance-promo.jpg" class="mega-menu-preview-image" alt="Attendance Devices">
+                                        <img src="assets/images/menu-featured/attendance/attendance-promo.jpg" class="mega-menu-preview-image" alt="Attendance Devices">
                                     </div>
                                 </div>
                             </div>
@@ -182,15 +182,15 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Polyester Lanyards</a>
-                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_poly.png">Nylon Lanyards</a>
-                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Lanyard Prints</a>
-                                        <a href="product.php?lanyard=3" data-image="assets/images/lanyard_print.png">Customized Lanyards</a>
+                                        <a href="product.php?lanyard=3" data-image="assets/images/menu-featured/lanyards/polyester-lanyards.jpg">Polyester Lanyards</a>
+                                        <a href="product.php?lanyard=7" data-image="assets/images/menu-featured/lanyards/nylon-lanyards.jpg">Nylon Lanyards</a>
+                                        <a href="product.php?lanyard=8" data-image="assets/images/menu-featured/lanyards/lanyard-prints.jpg">Lanyard Prints</a>
+                                        <a href="product.php?lanyard=9" data-image="assets/images/menu-featured/lanyards/customized-lanyards.jpg">Customized Lanyards</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="mega-menu-image">
-                                        <img src="assets/images/menu-featured/lanyards-promo.jpg" class="mega-menu-preview-image" alt="Lanyards">
+                                        <img src="assets/images/menu-featured/lanyards/lanyards-promo.jpg" class="mega-menu-preview-image" alt="Lanyards">
                                     </div>
                                 </div>
                             </div>
@@ -204,15 +204,15 @@ require_once __DIR__ . '/../connection/db.php';
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="mega-menu-links">
-                                        <a href="product.php?badge=6" data-image="assets/images/badge_metal.png">Metal Badges</a>
-                                        <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Plastic Badges</a>
-                                        <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Clip Badges</a>
-                                        <a href="product.php?badge=5" data-image="assets/images/badge_plastic.png">Magnetic Badges</a>
+                                        <a href="product.php?badge=6" data-image="assets/images/menu-featured/badges/metal-badges.jpg">Metal Badges</a>
+                                        <a href="product.php?badge=5" data-image="assets/images/menu-featured/badges/plastic-badges.jpg">Plastic Badges</a>
+                                        <a href="product.php?badge=19" data-image="assets/images/menu-featured/badges/clip-badges.jpg">Clip Badges</a>
+                                        <a href="product.php?badge=20" data-image="assets/images/menu-featured/badges/magnetic-badges.jpg">Magnetic Badges</a>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="mega-menu-image">
-                                        <img src="assets/images/menu-featured/badges-promo.jpg" class="mega-menu-preview-image" alt="Badges">
+                                        <img src="assets/images/menu-featured/badges/badges-promo.jpg" class="mega-menu-preview-image" alt="Badges">
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@ require_once __DIR__ . '/../connection/db.php';
                                 </div>
                                 <div class="col-md-5">
                                     <div class="mega-menu-image">
-                                        <img src="assets/images/menu-featured/erp-promo.jpg" class="mega-menu-preview-image" alt="ERP Solutions">
+                                        <img src="assets/images/menu-featured/erp/erp-promo.jpg" class="mega-menu-preview-image" alt="ERP Solutions">
                                     </div>
                                 </div>
                             </div>

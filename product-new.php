@@ -120,12 +120,29 @@ if (!$product) {
                         <div class="tab-pane fade" id="specs" role="tabpanel">
                             <h5>Technical Specifications</h5>
                             <ul>
-                                <li>Material: High-quality PVC</li>
-                                <li>Dimensions: 85.60 × 53.98 mm (Standard CR80 card)</li>
-                                <li>Thickness: 0.76 mm</li>
-                                <li>Printing: Full color UV printing</li>
-                                <li>Options: Magnetic stripe, barcode, smart chip available</li>
-                                <li>Finish: Glossy or matte lamination</li>
+                                <li><strong>Product Type:</strong> UV Printed ID Card</li>
+                                <li><strong>Material:</strong> High-quality PVC (Polyvinyl Chloride)</li>
+                                <li><strong>Dimensions:</strong> Standard CR80 size (85.60 mm x 53.98 mm)</li>
+                                <li><strong>Thickness:</strong> 0.76 mm (30 mil)</li>
+                                <li><strong>Printing Technology:</strong> Advanced UV Printing</li>
+                                <li><strong>Features:</strong>
+                                    <ul>
+                                        <li>Vibrant, full-color, edge-to-edge printing</li>
+                                        <li>High-resolution text and graphics</li>
+                                        <li>Extremely durable and resistant to fading, scratching, and water damage</li>
+                                        <li>Raised, textured, or glossy spot finishes available</li>
+                                        <li>Fast curing process for quick production</li>
+                                        <li>Environmentally friendly with low VOC emissions</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Applications:</strong> Corporate ID badges, student IDs, membership cards, loyalty cards, gift cards, access control cards.</li>
+                                <li><strong>Customization:</strong>
+                                    <ul>
+                                        <li>Single or double-sided printing</li>
+                                        <li>Variable data printing (names, photos, numbers)</li>
+                                        <li>Security features (holograms, microtext, UV ink)</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="reviews" role="tabpanel">

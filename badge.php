@@ -9,11 +9,12 @@ include 'includes/header.php';
 
   <div class="row g-3">
     <?php 
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE category = ? ORDER BY created_at DESC");
-    $stmt->execute(['badge']); 
+    // Fetch products with category_id = 3 (Badges & Reels)
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE category_id = 3 ORDER BY created_at DESC");
+    $stmt->execute(); 
 
     while ($p = $stmt->fetch()): 
-      $img = 'assets/images/' . ($p['image'] ?? 'placeholder.png'); 
+      $img = 'assets/images/products/' . ($p['image'] ?? 'placeholder.png'); 
     ?>
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card product-card" 

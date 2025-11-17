@@ -89,8 +89,40 @@ include 'includes/header.php';
                         <?php elseif ($product['id'] == 5): ?>
                         <span class="product-badge">FEATURED</span>
                         <?php endif; ?>
+                        <?php 
+                        // Determine category folder for index page product images
+                        $category_folder = 'general';
+                        if (!empty($product['category_id'])) {
+                            switch($product['category_id']) {
+                                case 1: $category_folder = 'attendance'; break;
+                                case 2: $category_folder = 'lanyards'; break;
+                                case 3: $category_folder = 'badges'; break;
+                                case 4: $category_folder = 'erp'; break;
+                                default: $category_folder = 'general';
+                            }
+                        } else {
+                            // For products without category, try to determine from title
+                            $title = strtolower($product['title']);
+                            if (strpos($title, 'id card') !== false || strpos($title, 'pvc') !== false || strpos($title, 'rfid') !== false || strpos($title, 'uv') !== false) {
+                                $category_folder = 'id-cards';
+                            } else if (strpos($title, 'lanyard') !== false) {
+                                $category_folder = 'lanyards';
+                            } else if (strpos($title, 'badge') !== false) {
+                                $category_folder = 'badges';
+                            }
+                        }
+                        
+                        // Construct image path
+                        $image_filename = $product['image'] ?? 'placeholder.png';
+                        $image_path = "assets/images/products/{$category_folder}/{$image_filename}";
+                        
+                        // Fallback to general if specific category image doesn't exist
+                        if (!file_exists(__DIR__ . "/{$image_path}")) {
+                            $image_path = "assets/images/products/{$image_filename}";
+                        }
+                        ?>
                         <a href="product.php?id=<?php echo $product['id']; ?>">
-                            <img src="assets/images/products/<?php echo htmlspecialchars($product['image'] ?? 'placeholder.png'); ?>" 
+                            <img src="<?php echo htmlspecialchars($image_path); ?>" 
                                  class="product-card-img" 
                                  loading="lazy"
                                  alt="<?php echo htmlspecialchars($product['title']); ?>">
