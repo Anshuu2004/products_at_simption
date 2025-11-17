@@ -47,6 +47,20 @@ $enquiryList = $_SESSION['enquiry'] ?? [];
                             <p>Simption Tech Pvt Ltd, B-32, IT Park Bhopal (M.P.) India</p>
                         </div>
                     </div>
+
+                    <!-- Contact Page Map (Same as Footer) -->
+                    <div class="contact-map mt-3 mb-4">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.305752083129!2d77.3629089751494!3d23.30466287897707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c41e7bbf11fed%3A0x81f078b386370dd3!2sSimption%20Tech%20PVT%20LTD!5e0!3m2!1sen!2sin!4v1763371715695!5m2!1sen!2sin"
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);" 
+                            allowfullscreen 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
                     
                     <div class="contact-item">
                         <div class="icon"><i class="fas fa-envelope"></i></div>
