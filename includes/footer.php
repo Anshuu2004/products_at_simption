@@ -2,14 +2,9 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <img src="assets/images/Simption Logo.png" alt="Simption Tech Logo" class="footer-logo mb-3">
+                 <h5>Why Us?</h5>
+                <ul class="list-unstyled footer-links">
                 <p>Creative ID & Attendance Solutions. Fast, affordable, and tailored for schools, colleges, and corporate offices.</p>
-                <div class="social-icons mt-4">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
             </div>
 
             <div class="col-lg-2 col-md-6">
