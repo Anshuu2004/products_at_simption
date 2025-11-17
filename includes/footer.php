@@ -34,6 +34,22 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Simption Tech Pvt Ltd, B-32, IT Park Bhopal (M.P.) India</span>
                     </li>
+
+                    <!-- Beautiful Footer Map -->
+                    <div class="footer-map mt-3">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.305752083129!2d77.3629089751494!3d23.30466287897707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c41e7bbf11fed%3A0x81f078b386370dd3!2sSimption%20Tech%20PVT%20LTD!5e0!3m2!1sen!2sin!4v1763371715695!5m2!1sen!2sin"
+                        width="100%" 
+                        height="170" 
+                        style="border:0; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.15);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+
+
                     <li>
                         <i class="fas fa-phone"></i>
                         <span>+91 9074822542</span>
